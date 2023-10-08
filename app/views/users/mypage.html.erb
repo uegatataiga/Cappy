@@ -19,6 +19,11 @@
       </tr>
 
       <tr>
+        <td>メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
        <td>フォロー</td>
        <td>
         <%= link_to follows_user_path(@user) do %>
@@ -37,18 +42,18 @@
       </tr>
 
       <tr>
-        <% if current_user != @user %>
-        <% if current_user.following?(user) %>
-        <td><%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-danger" %></td>
+       <td>会員ステータス</td>
+       <td><% if @user.is_deleted == false %>
+        有効
         <% else %>
-        <td><%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "byn btn-success" %></td>
-        <% end %>
-        <% end %>
+        退会
+        <% end %></td>
       </tr>
 
+
      </table>
+     <%= link_to "編集する", edit_user_path(@user), class: 'btn btn-success'%>
     </div>
 
   </div>
 </div>
-

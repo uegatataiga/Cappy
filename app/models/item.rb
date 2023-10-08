@@ -7,4 +7,9 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, presence: true
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end
