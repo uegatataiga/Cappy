@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
+    @items = @user.items
   end
 
   def mypage

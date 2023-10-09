@@ -20,7 +20,12 @@
          <% end %>
         </td>
 
-        <td><%= user.name %></td>
+        <td>
+         <%= link_to user_path(user) do %>
+         <%= user.name %>
+         <% end %>
+        </td>
+
         <td>
          <%= link_to follows_user_path(user) do %>
          <h6>フォロー<%= user.followers.count %></h6>
