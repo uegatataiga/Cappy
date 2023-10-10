@@ -26,7 +26,7 @@
   </td>
 
   <% if @item.video.attached? %>
-  <td><video src="<%#= rails_blob_path(@item.video) %>" type="video/mp4" controls></video></td>
+  <td><video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls></video></td>
   <% end %>
 <td>コメント件数:<span id="comment_counter"><%= @item.comments.count %></span></td>
 

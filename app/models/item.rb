@@ -1,8 +1,10 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to :genre
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
+
   #画像複数投稿
   has_many_attached :images
   #動画投稿機能

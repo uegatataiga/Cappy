@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'
-  get '/genre/search' => 'searches#genre_search'
+  get 'searches/genre_search' => 'searches#genre_search'
   get 'users/mypage' => 'users#mypage'
   get 'users/check'
   patch 'users/is_withdraw'
