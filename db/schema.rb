@@ -65,11 +65,9 @@ ActiveRecord::Schema.define(version: 2023_10_09_133122) do
     t.integer "user_id"
     t.string "name", default: "", null: false
     t.text "introduction", default: "", null: false
-    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "star"
-    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -94,5 +92,4 @@ ActiveRecord::Schema.define(version: 2023_10_09_133122) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "items", "genres"
 end

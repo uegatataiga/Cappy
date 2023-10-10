@@ -1,11 +1,11 @@
-<% if @item.favorited_by?(current_user) %>
-<%= link_to book_favorites_path(@item), method: :delete remote: true, data: {"turbolinks" => false} do %>♥<%= @item.favorites.count %>
+<% if item.favorited_by?(current_user) %>
+<%= link_to item_favorites_path(item), method: :delete, remote: true, data: {"turbolinks" => false} do %>♥<%= item.favorites.count %>
 
 <% end %>
 
 <% else %>
 
-<%= link_to book_favorites_path(@item), method: :post remote: true, data: {"turbolinks" => false} do %>♡<%= @item.favorites.count %>
+<%= link_to item_favorites_path(item), method: :post, remote: true, data: {"turbolinks" => false} do %>♡<%= item.favorites.count %>
 
 <% end %>
 

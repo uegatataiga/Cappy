@@ -38,6 +38,7 @@
         <div class="form-group">
          <%= render "static_rate", item: @item %>
         </div>
+        <% end %>
 
 
        <div class="form-group">
@@ -48,6 +49,8 @@
        <div class="form-group">
         <%= f.label :video %>
         <%= f.file_field :video, class: "form-control-file video", accept: 'video/*' %>
+       </div>
+
        <div class="form-group">
         <%= f.submit class: 'btn btn-success' %>
        </div>

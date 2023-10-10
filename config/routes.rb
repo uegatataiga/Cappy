@@ -8,15 +8,15 @@ Rails.application.routes.draw do
   get 'users/check'
   patch 'users/is_withdraw'
 
-  resources :users, only: [:index,:show,:edit,:update] do
+  resources :users, only: [:index, :show, :edit, :update] do
     member do
-    get :follows, :followers
+    get :follows, :followers, :favorites
     end
     resource :relationships, only: [:create, :destroy]
   end
 
-  resources :items do
-    resource :favorites, only: [:create, :destroy]
+  resources :items, only: [:index, :show, :edit, :update,  :new, :create, :destoroy] do
+    resource :favorites, only: [:index, :create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
 

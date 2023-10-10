@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+     before_action :authenticate_user!
+
   def new
     @item = Item.new
   end
@@ -10,7 +12,18 @@ class ItemsController < ApplicationController
   end
 
   def index
+    if params[:latest]
+    @item = Item.latest
+    elsif params[:old]
+    @item = Item.old
+    elsif params[:favorites_count]
+    @item = Item.favorites_count
+    elsif params[:star_count]
+    @item = Item.star_count
+    else
     @item = Item.all
+    end
+
     @user = current_user
   end
 
@@ -20,7 +33,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    @item.user_id = current_user.id
+    if @item.save!
     redirect_to item_path(@item.id)
     else
     @items = Item.all

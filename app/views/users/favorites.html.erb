@@ -1,0 +1,20 @@
+<table class="table">
+        <tbody>
+          <% @favorite_items.each do |item| %>
+      <tr>
+        <td><%= link_to(item) do %>
+          <%= image_tag item.get_images[0], size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to item.name,item %></td>
+        <td><%= item.introduction %></td>
+
+
+        <td id="favorite<%= item.id %>" >
+        <%= render 'favorites/favorite', item: item %>
+        </td>
+        <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
+        <td><%= render "items/static_rate", item: item  %></td>
+    <% end %>
+        </tbody>
+</table>

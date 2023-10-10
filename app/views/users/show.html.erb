@@ -76,7 +76,7 @@
         <%= render 'favorites/favorite', item: item %>
         </td>
         <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-        <td><%= render "books/static_rate", item: item %></td>
+        <td><%= render "items/static_rate", item: item %></td>
       <% end %>
      </tbody>
     </table>

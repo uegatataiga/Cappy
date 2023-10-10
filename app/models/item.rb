@@ -8,11 +8,21 @@ class Item < ApplicationRecord
   #動画投稿機能
   has_one_attached :video
 
+  #ソート機能
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :favorites_count, -> {order(favorites: :desc)}
+  scope :star_count, -> {order(star: :desc)}
+
   validates :name, presence: true
   validates :introduction, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+
+  def get_images
+    (images.attached?) ? images : 'no_image.jpg'
   end
 
 end
