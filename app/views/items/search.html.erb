@@ -1,0 +1,11 @@
+<div class=search-box>
+  <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+      <div class=form-group>
+        <%= f.text_field :keyword, class: "form-control" %>
+        <%= f.submit '本の題名を検索', class: "form-control btn btn-success" %>
+<% if @books.present? %>
+<%= @books.each do |book| %>
+  <%= book.title %>
+  <%= book.author %>
+  <%= book.item_caption %>
+  <%= link_to (image_tag(book.medium_image_url)), book.item_url %>

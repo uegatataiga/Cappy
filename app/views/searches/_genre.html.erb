@@ -1,5 +1,4 @@
 <div class="genre_search">
-  <table class="table">
     <tr>
     <div class="form-group">
     <%= form_with url: searches_genre_search_path, method: :get do |f| %>
@@ -9,5 +8,12 @@
     <% end %>
     </div>
    </tr>
-  </table>
 </div>
+
+
+t.integer :user_id
+      t.string :name, null: false, default: ""
+      t.text :introduction, null: false, default: ""
+      t.references :genre, foreign_key: true
+
+t.string :star

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   root to: 'homes#top'
@@ -15,10 +16,12 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   end
 
-  resources :items, only: [:index, :show, :edit, :update,  :new, :create, :destoroy] do
+  resources :items, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
     resource :favorites, only: [:index, :create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
+
+  resources :notifications, only: [:index,:destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

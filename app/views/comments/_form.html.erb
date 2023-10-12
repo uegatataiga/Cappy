@@ -1,6 +1,6 @@
-<td><%= form_with model: [item, comments], local: false do |f| %></td>
-<td>
+<div>
+<%= form_with model: [item, comments], local: false do |f| %>
 <%= f.text_area :comment, rows: '5', cols: '80', placeholder: "コメントをここに" %>
 <%= f.submit "送信" %>
 <% end %>
-</td>
+</div>

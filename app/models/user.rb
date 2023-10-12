@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
+  has_many :notifications, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, presence: true
@@ -38,6 +39,10 @@ class User < ApplicationRecord
     end
  end
 
+ def active_for_authentication?
+    super && (is_deleted == false)
+ end
+
  def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
  end
@@ -45,5 +50,6 @@ class User < ApplicationRecord
  def get_images
     (images.attached?) ? images : 'no_image.jpg'
  end
+
 
 end

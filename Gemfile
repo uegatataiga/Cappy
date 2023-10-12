@@ -58,3 +58,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'jquery-rails'
+
+gem 'rakuten_web_service'
+
+gem 'dotenv-rails'
+
+gem 'kaminari','~> 1.2.1'
+
+gem "enum_help"

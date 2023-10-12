@@ -16,8 +16,8 @@
   </thead>
 
   <tbody>
-    <% @item.each do |item| %>
       <tr>
+       <% @item.each do |item| %>
         <td>
         <% if item.images.attached? %>
           <%= link_to(item) do %>
@@ -38,8 +38,8 @@
         </td>
         <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
         <td><%= render "items/static_rate", item: item  %></td>
+        <% end %>
       </tr>
-    <% end %>
   </tbody>
 </table>
   </div>
