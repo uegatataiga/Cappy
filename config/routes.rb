@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'homes#top'
+  get 'items/search'
   get 'home/about' => 'homes#about', as: 'about'
   get 'searches/genre_search' => 'searches#genre_search'
   get 'users/mypage' => 'users#mypage'

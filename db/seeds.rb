@@ -5,3 +5,4 @@ Genre.create([
     { name: '実用書'},
     { name: '教育書'},
     ])
+

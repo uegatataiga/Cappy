@@ -58,6 +58,12 @@ class ItemsController < ApplicationController
     redirect_to items_path
   end
 
+  def search
+    if params[:keyword]
+      @item = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    end
+  end
+
 
   private
 
