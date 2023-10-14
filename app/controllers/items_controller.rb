@@ -2,7 +2,11 @@ class ItemsController < ApplicationController
      before_action :authenticate_user!
 
   def new
-    @item = Item.new
+    if Item.where(user_id:current_user.id,rakuten_code:params[:rakuten_code]).count == 0
+      @item = Item.new(rakuten_image:params[:rakuten_image],rakuten_name:params[:rakuten_name],rakuten_url:params[:rakuten_url],rakuten_introduction:params[:rakuten_introduction],rakuten_code:params[:rakuten_code])
+    else
+      redirect_to request.referer
+    end
   end
 
   def show
@@ -68,7 +72,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :star, :genre_id, :video, images: [])
+    params.require(:item).permit(:name, :introduction, :star, :genre_id, :video,:rakuten_image, :rakuten_name, :rakuten_url, :rakuten_introduction,:rakuten_code,images: [])
   end
 
 end

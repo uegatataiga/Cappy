@@ -9,9 +9,10 @@
 <% if @item.present? %>
   <% @item.first(10).each do |item| %>
 <div class="list-group">
+ <%= link_to new_item_path(rakuten_image:item.small_image_urls,rakuten_name:item.name,rakuten_url:item.url,rakuten_introduction:item.params["itemCaption"],rakuten_code:item.params["itemCode"]) do %>
  <%= image_tag (item['smallImageUrls'][0]) %>
+ <% end %>
  <%= link_to item.name, "#{item.url}" %>
- <%= number_with_delimiter(item.price) %>円
 </div>
 <% end %>
 <% end %>

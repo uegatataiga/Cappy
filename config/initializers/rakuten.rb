@@ -1,5 +1,6 @@
 RakutenWebService.configure do |c|
-c.application_id = ENV['RWS_APPLICATION_ID']
+  c.application_id = ENV['RWS_APPLICATION_ID']
+  puts ENV['RWS_APPLICATION_ID']
+  c.debug=true
 
-c.affiliate_id = ENV['RWS_AFFILIATION_ID']
 end

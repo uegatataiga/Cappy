@@ -12,7 +12,10 @@
   <td><%= @item.introduction %></td>
   </tr>
   <tr>
-  <td>レビュー</td>
+  <td><%= @item.rakuten_name %></td>
+  <td><%= @item.rakuten_url %></td>
+  </tr>
+  <tr>
   <td><%= render "static_rate", item: @item %></td>
   </tr>
   <tr>

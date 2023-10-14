@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_12_164245) do
+ActiveRecord::Schema.define(version: 2023_10_14_064210) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(version: 2023_10_12_164245) do
     t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rakuten_url"
+    t.string "rakuten_name"
+    t.string "rakuten_code"
+    t.text "rakuten_introduction"
+    t.string "rakuten_image"
     t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 

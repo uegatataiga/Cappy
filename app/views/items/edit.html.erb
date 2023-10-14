@@ -14,6 +14,11 @@
         <%= f.text_area :introduction, class: "form-control introduction" %>
        </div>
 
+        <div class="form-group">
+        <%= f.label :ジャンル %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+       </div>
+
 　　　 <% if @item.id.nil? %>
        <div class="form-group" id="star">
         <%= f.label :star %>
@@ -59,3 +64,4 @@
     </div>
   </div>
 </div>
+
