@@ -6,3 +6,8 @@ Genre.create([
     { name: '教育書'},
     ])
 
+User.create!(
+   email: "admin@example.jp",
+    name: "管理者",
+password: "123456",
+  admin: true )
