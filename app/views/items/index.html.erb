@@ -1,13 +1,21 @@
 <div class='container'>
+<div><%= render "searches/genre" %></div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to '新しい順', items_path(latest: "true"), class: "nav-link list text-dark"%>
+  </li>
+  <li class="nav-item">
+    <%= link_to '古い順', items_path(old: "true"), class: "nav-link list text-dark" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'いいねの多い順', items_path(favorites_count: "true"), class: "nav-link list text-dark" %>
+  </li>
+   <li class="nav-item">
+     <%= link_to '評価の高い順', items_path(star_count: "true"), class: "nav-link list text-dark" %>
+   </li>
+</ul>
 
-  <%= link_to '新しい順', items_path(latest: "true") %>
- |<%= link_to '古い順', items_path(old: "true") %>
- |<%= link_to 'いいねの多い順', items_path(favorites_count: "true") %>
- |<%= link_to '評価の高い順', items_path(star_count: "true") %>
-
- <div><%= render "searches/genre" %></div>
-
-<table class='table table-hover table-inverse'>
+<table class='table'>
   <thead>
     <tr>
       <th></th>

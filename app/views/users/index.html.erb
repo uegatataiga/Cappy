@@ -1,7 +1,7 @@
 <div class="container">
   <div class = "row">
     <div class = "col-lg-8 mx-auto">
-      <table class="table">
+      <table class="table table-striped">
 
        <thead>
         <tr>
@@ -19,7 +19,7 @@
          <td><%= user.name %></td>
          <td>フォロー<%= user.followers.count %></td>
          <td>フォロワー<%= user.followeds.count %></td>
-         <td><%= link_to 'Show', user %></td>
+         <td><%= link_to 'Show', user ,class: 'btn btn--orange btn--circle btn--circle-a btn--shadow'%></td>
         </tr>
         <% end %>
        </tbody>

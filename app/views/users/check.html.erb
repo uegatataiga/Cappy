@@ -1,4 +1,6 @@
-<div class="container">
+<div class="container mt-5">
+<div class='row'>
+<div class="edit shadow col-md-6  mx-auto">
 
 <div class = text-center>
 <h1 class ="check messege">本当に退会しますか？</h1>
@@ -10,5 +12,7 @@
 
   <%= link_to "退会しない", users_mypage_path(@user), :class => "btn btn-primary ms-3" %>
   <%= link_to "退会する", users_is_withdraw_path(@user), method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
+</div>
+</div>
 </div>
 </div>
