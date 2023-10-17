@@ -1,11 +1,12 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
+   <h3 class="fas fa-home  col-md-6  mx-auto text-secondary">マイページ</h3>
 　 <div class="edit shadow col-md-6  mx-auto">
 
      <table class="table">
 
       <tr>
-       <td><%= image_tag @user.get_profile_image, size: '50x50' %></td>
+     <%= image_tag @user.get_profile_image, size: '64x64' %>
       </tr>
 
       <tr>
@@ -50,7 +51,11 @@
         <% end %></td>
       </tr>
       <tr>
-       <td><%= link_to "いいね一覧", favorites_user_path(@user)%></td>
+       <td>
+        <%= link_to favorites_user_path(@user) do %>
+        <p class="text-dark">♡いいね一覧へ</p>
+        <% end %>
+       </td>
       </tr>
 
      </table>

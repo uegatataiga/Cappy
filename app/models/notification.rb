@@ -5,4 +5,8 @@ class Notification < ApplicationRecord
 
   enum action_type: { commented_to_own_item: 0, favorited_to_own_item: 1, followed_me: 3}
 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  end
+
 end

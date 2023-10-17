@@ -1,9 +1,14 @@
 <%= link_to transition_path(notification) do %>
-  <div>
+
+    <%= link_to  user_path(notification.subject.user) do %>
+    <%= image_tag notification.subject.user.get_profile_image, size: '50x50' %>
+    <% end %>
+
     <%= link_to notification.subject.user.name, user_path(notification.subject.user) %>
-    があなたの
+    さんがあなたの
     <%= link_to '投稿', item_path(notification.subject.item) %>
     にいいねしました
     <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
-  </div>
+
+
 <% end %>
