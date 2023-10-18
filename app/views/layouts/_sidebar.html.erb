@@ -1,0 +1,36 @@
+
+
+　 <div class="edit shadow">
+
+    <div>
+    <%= link_to notifications_path, class: 'nav-link text-dark' do %>
+    <i class="fa-sharp fa-solid fa-bell"></i> 通知一覧
+    <% end %>
+    </div>
+
+    <div>
+     <%= link_to users_mypage_path(current_user),class: 'nav-link text-dark' do %>
+     <i class="fas fa-home"></i> Mypage
+     <% end %>
+    </div>
+
+    <div>
+     <%= link_to users_path,class: 'nav-link text-dark' do %>
+     <i class="fas fa-users"></i> Users
+     <% end %>
+    </div>
+
+    <div>
+     <%=  link_to items_path ,class: 'nav-link text-dark' do %>
+     <i class="fas fa-cat"></i> 投稿一覧
+     <% end %>
+    </div>
+
+    <div>
+     <%=  link_to items_search_path ,class: 'nav-link text-dark' do %>
+     <i class="fas fa-book-open"></i> 新規投稿
+     <% end %>
+    </div>
+
+  </div>
+
