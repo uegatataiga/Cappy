@@ -1,22 +1,15 @@
-<div class="container">
-  <h2>Follows</h2>
+<div class="container mt-3">
+  <div class="row">
+   <h3 class="fas fa-users  col-md-6  mx-auto text-secondary">フォロー</h3>
+　  <div class="edit shadow col-md-6  mx-auto">
 
-    <table class='table'>
-      <thead>
-       <tr>
-        <th>Image</th>
-        <th>name</th>
-        <th></th>
-        <th></th>
-       </tr>
-      </thead>
-
+     <table class='table table-striped'>
       <tbody>
        <% @users.each do |user| %>
        <tr>
         <td>
          <%= link_to user_path(user) do %>
-         <%= image_tag user.get_profile_image, size: '50x50' %>
+         <%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %>
          <% end %>
         </td>
 
@@ -40,7 +33,8 @@
        </tr>
        <% end %>
       </tbody>
+　　 </table>
 
-    </table>
-
+     </div>
+   </div>
 </div>

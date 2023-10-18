@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
     elsif params[:star_count]
     @item = Item.star_count
     else
-    @item = Item.all
+    @item = Item.page(params[:page]).per(8)
     end
 
     @user = current_user

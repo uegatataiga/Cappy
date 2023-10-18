@@ -1,21 +1,13 @@
-<div class="container">
-  <div class = "row">
-    <div class = "col-lg-8 mx-auto">
-      <table class="table table-striped">
-
-       <thead>
-        <tr>
-          <th>image</th>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-       </thead>
+<div class="container mt-3">
+  <div class="row">
+   <h3 class="fas fa-users  col-md-8  mx-auto text-secondary">ユーザーズ</h3>
+　  <div class="edit shadow col-md-8  mx-auto">
+　    <table class="table table-striped">
 
        <tbody>
          <% @users.each do |user| %>
         <tr>
-         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+         <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
          <td><%= user.name %></td>
          <td>フォロー<%= user.followers.count %></td>
          <td>フォロワー<%= user.followeds.count %></td>
@@ -23,7 +15,6 @@
         </tr>
         <% end %>
        </tbody>
-
       </table>
     </div>
   </div>

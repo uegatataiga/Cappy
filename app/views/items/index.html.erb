@@ -1,5 +1,5 @@
 <div class='container'>
-<div><%= render "searches/genre" %></div>
+<div><%= render "genresearches/genre" %></div>
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to '新しい順', items_path(latest: "true"), class: "nav-link list text-dark"%>
@@ -52,6 +52,7 @@
         <td><%= render "static_rate", item: item  %></td>
       <% end %>
       </tr>
+<%= paginate @item %>
   </tbody>
 </table>
 </div>

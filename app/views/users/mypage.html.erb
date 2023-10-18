@@ -3,10 +3,10 @@
    <h3 class="fas fa-home  col-md-6  mx-auto text-secondary">マイページ</h3>
 　 <div class="edit shadow col-md-6  mx-auto">
 
-     <table class="table">
+     <table class="table table-striped">
 
       <tr>
-     <%= image_tag @user.get_profile_image, size: '64x64' %>
+     <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '64x64' %>
       </tr>
 
       <tr>

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'items/search'
   get 'home/about' => 'homes#about', as: 'about'
-  get 'searches/genre_search' => 'searches#genre_search'
+  get 'genresearches/genre_search' => 'genresearches#genre_search'
+  get "search" => "searches#search"
   get 'users/mypage' => 'users#mypage'
   get 'users/check'
   patch 'users/is_withdraw'
