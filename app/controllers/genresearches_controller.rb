@@ -1,4 +1,4 @@
-class GenreSearchesController < ApplicationController
+class GenresearchesController < ApplicationController
 
   def genre_search
     @genre_id = params[:genre_id]

@@ -7,6 +7,34 @@
   border-radius: 15px;
 }
 
+.sidebar {
+  border: 2px solid #aaa;
+
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.mypage {
+  border: 2px solid #aaa;
+
+  border-radius: 15px;
+}
+
+.compile {
+  padding-bottom: 2em;
+}
+
+.status {
+  padding-bottom: 2em;
+}
+
+.sidetable {
+  width: 100%;
+}
+.sidetable tr {
+  height: 25px;
+}
+
 .btn--orange,
 a.btn--orange {
   color: #fff;
@@ -74,3 +102,4 @@ a.btn--circle {
   color: #930403;
   border: solid 1px #930403;
 }
+

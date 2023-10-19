@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top,:about]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :new_items
 
+ def new_items
+  @newitem = Item.order(created_at: :desc).limit(5)
+ end
 
 
   def after_sign_in_path_for(resource)

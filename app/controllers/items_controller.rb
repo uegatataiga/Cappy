@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def new
     if Item.where(user_id:current_user.id,rakuten_code:params[:rakuten_code]).count == 0
-      @item = Item.new(rakuten_image:params[:rakuten_image],rakuten_name:params[:rakuten_name],rakuten_url:params[:rakuten_url],rakuten_introduction:params[:rakuten_introduction],rakuten_code:params[:rakuten_code])
+      @item = Item.new(rakuten_image:params[:rakuten_image][0],rakuten_name:params[:rakuten_name],rakuten_url:params[:rakuten_url],rakuten_introduction:params[:rakuten_introduction],rakuten_code:params[:rakuten_code])
     else
       flash.now[:alert] = "この商品は投稿済みです。"
       redirect_to request.referer

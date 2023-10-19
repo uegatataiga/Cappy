@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row">
-   <h3 class="fas fa-users  col-md-8 text-secondary">ユーザーズ</h3>
+   <h3 class="fas fa-users  col-md-8 text-secondary">ユーザー一覧</h3>
 　  <div class="edit shadow col-md-8">
 　    <table class="table table-striped">
 
@@ -15,6 +15,7 @@
         </tr>
         <% end %>
        </tbody>
+       <%= paginate @users %>
       </table>
     </div>
   </div>

@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @follower_users = @user.follower_users
     @items = @user.items
     favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
-    @favorite_items = Item.find(favorites)
   end
 
   def mypage
@@ -14,6 +13,8 @@ class UsersController < ApplicationController
     @follower_users = @user.follower_users
     favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
     @favorite_items = Item.find(favorites)
+    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(8)
+    @items = @user.items
   end
 
   def edit
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.page(params[:page]).per(8)
   end
 
   def update
@@ -37,18 +38,19 @@ class UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-    @users = user.following_users
+    @users = user.following_users.per(8)
   end
 
   def followers
     user = User.find(params[:id])
-    @user = user.follower_users
+    @user = user.follower_users.page(params[:page]).per(8)
   end
 
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
     @favorite_items = Item.find(favorites)
+    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(8)
   end
 
   def check
