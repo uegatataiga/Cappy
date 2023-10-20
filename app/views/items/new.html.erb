@@ -1,13 +1,7 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<div class='container col-md-8 float-left mt-2'>
+   <h2 class="text-center text-secondary">新規投稿</h2>
+    <div class="col-md-12 edit">
      <%= render 'varidation', item: @item %>
-     <h2>新規投稿</h2>
-
-
-       <%#= image_tag (@item['mediumImageUrls']) %>
-
-
       <%= form_with model:@item, local:true do |f| %>
       <div class="form-group">
        <%= image_tag @item.rakuten_image %>
@@ -25,16 +19,6 @@
        <div class="form-group">
         <%= f.label :rakuten_url %>
         <%= f.text_field :rakuten_url, class: "form-control name",readonly:true %>
-       </div>
-
-       <div class="form-group">
-        <%= f.label :rakuten_introduction %>
-        <%= f.text_area :rakuten_introduction, class: "form-control introduction",readonly:true %>
-       </div>
-
-       <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control name" %>
        </div>
 
        <div class="form-group">
@@ -80,11 +64,10 @@
         <%= f.file_field :video, class: "form-control-file video", accept: 'video/*' %>
        </div>
 
-       <div class="form-group">
-        <%= f.submit class: 'btn btn-success' %>
+       <div class="form-group text-center">
+        <%= f.submit class: "btn btn--orange" %>
        </div>
       <% end %>
 
     </div>
-  </div>
 </div>

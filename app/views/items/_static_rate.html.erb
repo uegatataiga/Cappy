@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
   let elem = document.querySelector('#star_<%= item.id %>');
   if (elem == null) return;
 
-  elem.innerHTML = "";
+  elem.innerHTML = "評価：";
   let opt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",

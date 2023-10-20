@@ -1,6 +1,6 @@
-<div class='col-md-8'>
- <h4>Bookcomments</h4>
- <h4>コメント件数:<span id="comment_counter"><%= @item.comments.count %></span></h4>
+ <div>
+ <h5>コメント</h5>
+ <h6>コメント件数:<span id="comment_counter"><%= item.comments.count %></span></h6>
   <table class='table'>
 
    <tbody>
@@ -11,7 +11,7 @@
      <td><%= comment.user.name %></td>
      <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
      <td><%= comment.comment %></td>
-     <% if comment.user == current_user || current_user.admin? %>
+     <% if comment.user == current_user %>
      <td><%= link_to "削除", item_comment_path(item, comment), method: :delete, remote: true, data: {"turbolinks" => false} %></td>
      <% end %>
     </tr>
@@ -20,4 +20,5 @@
    </tbody>
 
   </table>
-</div>
+  </div>
+

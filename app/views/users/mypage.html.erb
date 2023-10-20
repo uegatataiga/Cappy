@@ -1,8 +1,8 @@
 <div class="container mt-3">
   <div class="row">
    <h3 class="fas fa-home  col-md-7 text-secondary">マイページ</h3>
-　 <div class="mypage shadow col-md-7">
-　  <div class="tabs">
+ <div class="mypage shadow col-md-7">
+  <div class="tabs">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link active text-dark" data-toggle="tab" href="#section1">my情報</a>
@@ -65,6 +65,9 @@
         <% end %></td>
       </tr>
      </table>
+     <%= link_to favorites_user_path(@user) do %>
+        <p class="text-dark">♡いいね一覧へ</p>
+        <% end %>
 
     <div class="compile text-center">
      <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
@@ -96,13 +99,40 @@
         </td>
         <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
         <td><%= render "items/static_rate", item: item %></td>
+       </tr>
       <% end %>
      </tbody>
     </table>
    </div>
 
    <div id="section3" class="tab-pane fade show list">
-    <%= render "favorites",favorite_items: @favorite_items %>
+    <table class="table table-striped">
+
+    <tbody>
+     <% @favorite_items.each do |item| %>
+      <tr>
+       <td>
+        <% if item.images.attached? %>
+         <%= link_to(item) do %>
+          <%= image_tag item.get_images[0], size:'50x50' %>
+         <% end %>
+        <% elsif %>
+         <%= link_to(item) do %>
+          <%= image_tag item.get_images, size:'50x50' %>
+         <% end %>
+        <% end %>
+       </td>
+       <td><%= link_to item.name,item %></td>
+       <td id="favorite<%= item.id %>" >
+        <%= render 'favorites/favorite', item: item %>
+       </td>
+       <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
+       <td><%= render "items/static_rate", item: item  %></td>
+      </tr>
+     <% end %>
+     <%= paginate @favorite_items %>
+    </tbody>
+   </table>
    </div>
 
 

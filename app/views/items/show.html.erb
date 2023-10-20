@@ -1,62 +1,63 @@
-<div class='container'>
- <h1>商品詳細</h1>
+<div class='container edit col-md-11 mt-5'>
  <div class="row">
-<div class='col-md-12'>
-<table class="table">
- <% unless @item.rakuten_image.blank? %>
+ <div class='col-md-6'>
+  <h5><%= @item.rakuten_name %></h5>
+ </div>
+ <% if user_signed_in? %>
+  <% if current_user == @user || current_user.admin? %>
+<div class='text-center col-md-6'>
+<%= link_to "編集", edit_item_path, class: 'btn btn--orange' %></br>
+<%= link_to '削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger"%>
+</div>
+<% end %>
+<% end %>
+ <div class="media col-md-12 mt-3">
+  <img class="rounded-lg">
+   <% unless @item.rakuten_image.blank? %>
   <%= image_tag @item.rakuten_image %>
  <% end %>
-  <tr>
-  <td>商品名</td>
-  <td><%= @item.name %></td>
-  </tr>
-  <tr>
-  <td>商品説明</td>
-  <td><%= @item.introduction %></td>
-  </tr>
-  <tr>
-  <td><%= @item.rakuten_name %></td>
-  <td><%= @item.rakuten_url %></td>
-  </tr>
-  <tr>
-  <td><%= render "static_rate", item: @item %></td>
-  </tr>
-  <tr>
-  <td><%= @item.created_at.strftime('%Y/%m/%d') %></td>
-  </tr>
-  <tr>
-  <td>
+ </img>
+
+ <div class="media-body">
+    <p class= "border-bottom">投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
+    <p class= "border-bottom">URL：<%= @item.rakuten_url %></p>
+    <p class= "border-bottom">ジャンル：<%= @item.genre.name %></p>
+    <p class= "border-bottom" id="favorite<%= @item.id %>" >いいね：
+        <%= render 'favorites/favorite', item: @item %>
+    </p>
+    <p><%= render "static_rate", item: @item %></p>
+</div>
+</div>
+ <div class='col-md-12 item'>
+  <h5>商品説明</h>
+  <p><%= @item.introduction %></p>
+ </div>
+
    <% if @item.images.attached? %>
+  <div class='col-md-12 item'>
     <% @item.images.each do |image| %>
      <%= image_tag image.variant(resize: '500x500') %>
      <% end %>
+  </div>
    <% end %>
-  </td>
-  </tr>
-  <tr>
+
+
+
   <% if @item.video.attached? %>
-  <td><video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls></video></td>
-  <% end %>
-  </tr>
-<tr>
- <td id="comments">
+ <div class='col-md-12 item'>
+ <video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls></video>
+ </div>
+ <% end %>
+
+
+ <div id="comments">
   <%= render 'comments/show', item: @item, comments: @comment %>
- </td>
-</tr>
-<tr>
- <td id="comment-form">
+ </div>
+
+
+ <div id="comment-form">
  <%= render 'comments/form', item: @item, comments: @comment %>
- </td>
-</tr>
-</table>
+ </div>
+
 </div>
-</div>
-<% if user_signed_in? %>
-  <% if current_user == @user || current_user.admin? %>
-<div class='text-center'>
-<%= link_to "編集する", edit_item_path, class: 'btn btn-success' %>
-<%= link_to '削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-</div>
-<% end %>
-<% end %>
 </div>
