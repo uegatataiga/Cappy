@@ -12,6 +12,8 @@ class Item < ApplicationRecord
   #動画投稿機能
   has_one_attached :video
 
+
+
   #ソート機能
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
@@ -28,6 +30,8 @@ class Item < ApplicationRecord
   def get_images
     (images.attached?) ? images : 'no_image.jpg'
   end
+
+
 
   # 検索方法分岐
   def self.looks(search, word)

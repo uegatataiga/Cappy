@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @item = Item.find(params[:item_id])
     @comment = current_user.comments.new(comment_params)
     @comment.item_id = @item.id
+    @comment.save
   end
 
   def destroy

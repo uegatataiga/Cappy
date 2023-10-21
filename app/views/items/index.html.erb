@@ -1,37 +1,37 @@
 <div class='container'>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
+
+  <ul class="nav nav-tabs">
+   <li class="nav-item">
     <%= link_to '新しい順', items_path(latest: "true"), class: "nav-link list text-dark"%>
-  </li>
-  <li class="nav-item">
+   </li>
+   <li class="nav-item">
     <%= link_to '古い順', items_path(old: "true"), class: "nav-link list text-dark" %>
-  </li>
-  <li class="nav-item">
+   </li>
+   <li class="nav-item">
     <%= link_to 'いいねの多い順', items_path(favorites_count: "true"), class: "nav-link list text-dark" %>
-  </li>
+   </li>
    <li class="nav-item">
      <%= link_to '評価の高い順', items_path(star_count: "true"), class: "nav-link list text-dark" %>
    </li>
-</ul>
+  </ul>
 
-
+  <div class="row">
 
     <% @item.each do |item| %>
-    <div class="item-card edit card-effect text-center" style="height: 90%;">
-                          <div class="d-flex flex-column h-100">
-                            <% unless item.rakuten_image.blank? %>
-                            <%= link_to item_path(item) do %>
+     <div class="card shadow">
+      <%= link_to item_path(item), class: "card-body text-dark text-center" do %>
+      <img class="card-img-top">
+       <% if item.rakuten_image.blank? %>
+       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %>
+       <% else %>
+        <%= image_tag item.rakuten_image, class: "border border-secondary" %>
+       <% end %>
+      </img>
+        <p class="card-text"><%= item.rakuten_name.truncate(12, omission: '...')  %></p>
+        <p class="card-text">ジャンル：<%= item.genre.name %></p>
+      <% end %>
+      </div>
+    <% end %>
 
-                              <%= image_tag item.rakuten_image %>
-                              <% end %>
-                            <% end %>
-                            <div class="my-4">
-                              <h5><%= item.genre.name %></h5>
-                              <p><%= item.introduction %></p>
-                            </div>
-                          </div>
-                          </div>
- <% end %>
-<%= paginate @item %>
-
+  </div>
 </div>

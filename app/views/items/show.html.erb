@@ -20,11 +20,9 @@
 
  <div class="media-body">
     <p class= "border-bottom">投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
-    <p class= "border-bottom">URL：<%= @item.rakuten_url %></p>
+    <p class= "border-bottom">URL：<%=@item.rakuten_url %></p>
     <p class= "border-bottom">ジャンル：<%= @item.genre.name %></p>
-    <p class= "border-bottom" id="favorite<%= @item.id %>" >いいね：
-        <%= render 'favorites/favorite', item: @item %>
-    </p>
+    <p class= "border-bottom favorite<%= @item.id %>"><%= render 'favorites/favorite', item: @item %></p>
     <p><%= render "static_rate", item: @item %></p>
 </div>
 </div>
@@ -49,15 +47,16 @@
  </div>
  <% end %>
 
-
+<div class='col-md-12 item'>
  <div id="comments">
   <%= render 'comments/show', item: @item, comments: @comment %>
  </div>
+</div>
 
-
+<div class='col-md-12 item'>
  <div id="comment-form">
  <%= render 'comments/form', item: @item, comments: @comment %>
  </div>
-
+</div>
 </div>
 </div>

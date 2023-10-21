@@ -7,11 +7,32 @@
   border-radius: 15px;
 }
 
+.card {
+  margin: 20px;
+}
+
+.card-body {
+  padding-top: 0.5em;
+  height: 256px;
+  width: 213px;
+}
+
+.card-text {
+  height: 25px;
+}
+
 .sidebar {
   border: 2px solid #aaa;
 
   padding: 1em;
   border-radius: 15px;
+}
+
+.comment {
+  border: 2px solid #aaa;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding-top: 5px;
 }
 
 .mypage {
@@ -110,5 +131,20 @@ a.btn--circle {
 
 .item {
    border-Top: 1px solid #333;    /* 上側の1本線 */
-   padding: 2em;
+   padding: 1em;
+}
+
+.p{
+white-space:nowrap;
+}
+
+.user-group{
+  margin: 20px;
+  border: 2px solid #aaa;
+  border-radius: 15px;
+  padding-top: 1em;
+}
+
+.sample {
+ padding-top: 0.5em;
 }

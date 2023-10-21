@@ -51,6 +51,7 @@ class User < ApplicationRecord
     (images.attached?) ? images : 'no_image.jpg'
  end
 
+
 # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
