@@ -17,88 +17,76 @@
 
   <div class="tab-content">
     <div id="section1" class="tab-pane fade show active">
-     <table class="table table-striped">
+     <div class="row">
 
-      <tr>
-     <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '64x64' %>
-      </tr>
+        <div class="col-md-12 text-center">
+        <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '150x150' %></br>
+        <%= @user.name %>
+        </div>
 
-      <tr>
-       <td>氏名</td>
-       <td><%= @user.name %></td>
-      </tr>
+         <div class="col-md-12">
+         <h5>・紹介文</h5>
+         <div class="text-body">
+         <%= @user.introduction %>
+         </div>
+         </div>
 
-      <tr>
-       <td>一言</td>
-       <td><%= @user.introduction %></td>
-      </tr>
-
-      <tr>
-        <td>メールアドレス</td>
-        <td><%= @user.email %></td>
-      </tr>
-
-      <tr>
-       <td>フォロー</td>
-       <td class="text-dark">
+      <div class="uses col-md-6 text-center mt-4">
+       フォロー
+      </div>
+      <div class="uses col-md-6 text-center mt-4">
         <%= link_to follows_user_path(@user), class: 'text-dark' do %>
         <%= @user.followers.count %>
         <% end %>
-       </td>
-      </tr>
+     </div>
 
-      <tr>
-       <td>フォロワー</td>
-       <td>
+
+      <div class="forr col-md-6 text-center">
+       フォロワー
+      </div>
+      <div class="forr col-md-6 text-center">
         <%= link_to followers_user_path(@user), class: 'text-dark' do %>
         <%= @user.followeds.count %>
         <% end %>
-       </td>
-      </tr>
+      </div>
 
-      <tr>
-       <td>会員ステータス</td>
-       <td><% if @user.is_deleted == false %>
+
+      <div class="uses col-md-6 text-center">
+       会員ステータス
+      </div>
+      <div class="uses col-md-6 text-center">
+       <% if @user.is_deleted == false %>
         有効
         <% else %>
         退会
-        <% end %></td>
-      </tr>
-     </table>
+        <% end %>
+       </div>
+
      <%= link_to favorites_user_path(@user) do %>
         <p class="text-dark">♡いいね一覧へ</p>
         <% end %>
 
-    <div class="compile text-center">
+    <div class="compile col-md-12 text-center">
      <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
     </div>
     </div>
-
+    </div>
     <div id="section2" class="tab-pane fade show list">
 
     <table class="table table-striped">
-     <thead>
-      <tr>
-       <th></th>
-       <th>Title</th>
-       <th>Tag</th>
-       <th colspan="3"></th>
-      </tr>
-     </thead>
 
      <tbody>
       <% @items.each do |item| %>
       <tr>
         <td><%= link_to(item.user) do %>
-          <%= image_tag item.user.get_profile_image, size:'50x50' %>
+          <%= image_tag item.user.get_profile_image, class: "text-dark", size:'50x50' %>
           <% end %>
         </td>
-        <td><%= link_to item.name,item, class: 'text-dark' %></td>
+        <td><%= link_to item.name,item %></td>
         <td id="favorite<%= item.id %>" >
         <%= render 'favorites/favorite', item: item %>
         </td>
         <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-        <td><%= render "items/static_rate", item: item %></td>
        </tr>
       <% end %>
      </tbody>
@@ -106,33 +94,7 @@
    </div>
 
    <div id="section3" class="tab-pane fade show list">
-    <table class="table table-striped">
-
-    <tbody>
-     <% @favorite_items.each do |item| %>
-      <tr>
-       <td>
-        <% if item.images.attached? %>
-         <%= link_to(item) do %>
-          <%= image_tag item.get_images[0], size:'50x50' %>
-         <% end %>
-        <% elsif %>
-         <%= link_to(item) do %>
-          <%= image_tag item.get_images, size:'50x50' %>
-         <% end %>
-        <% end %>
-       </td>
-       <td><%= link_to item.name,item %></td>
-       <td id="favorite<%= item.id %>" >
-        <%= render 'favorites/favorite', item: item %>
-       </td>
-       <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-       <td><%= render "items/static_rate", item: item  %></td>
-      </tr>
-     <% end %>
-     <%= paginate @favorite_items %>
-    </tbody>
-   </table>
+    <%= render "favorites", favorite_items: @favorite_items %>
    </div>
 
 

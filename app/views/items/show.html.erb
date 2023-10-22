@@ -20,9 +20,9 @@
 
  <div class="media-body">
     <p class= "border-bottom">投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
-    <p class= "border-bottom">URL：<%=@item.rakuten_url %></p>
+    <p class= "border-bottom">URL：<%= link_to @item.rakuten_url, @item.rakuten_url %></p>
     <p class= "border-bottom">ジャンル：<%= @item.genre.name %></p>
-    <p class= "border-bottom favorite<%= @item.id %>"><%= render 'favorites/favorite', item: @item %></p>
+    <p class="border-bottom" id="favorite<%= @item.id %>"><%= render 'favorites/favorite', item: @item %></p>
     <p><%= render "static_rate", item: @item %></p>
 </div>
 </div>
@@ -33,17 +33,21 @@
 
    <% if @item.images.attached? %>
   <div class='col-md-12 item'>
+
+  <div class="slider" style="text-align: center;">
     <% @item.images.each do |image| %>
-     <%= image_tag image.variant(resize: '500x500') %>
+    <%= image_tag image.variant( resize: "480x300") %>
      <% end %>
   </div>
+  </div>
+
    <% end %>
 
 
 
   <% if @item.video.attached? %>
- <div class='col-md-12 item'>
- <video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls></video>
+ <div class='col-md-12 item text-center'>
+ <video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls width="480" height="300"></video>
  </div>
  <% end %>
 

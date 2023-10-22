@@ -1,41 +1,39 @@
 <div class="container mt-3">
-  <div class="row">
-   <h3 class="fas fa-users  col-md-6  mx-auto text-secondary">フォロワー</h3>
-　  <div class="edit shadow col-md-6  mx-auto">
 
-    <table class='table table-striped'>
-     <tbody>
-      <% @user.each do |user| %>
-       <tr>
-        <td>
-        <%= link_to user_path(user) do %>
-        <%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %>
+   <h3 class="fas fa-users text-secondary">フォロワー一覧</h3>
+
+
+
+<% @user.each do |user| %>
+    <div class= "row user-group shadow ">
+     <div class="col-md-2 text-center">
+     <%= image_tag user.get_profile_image, class: "rounded-circle",size:"50x50"  %></br>
+     <%= user.name %>
+     </div>
+     <div class="col-md-2 text-center">
+       <span class="badge badge-primary">フォロー</span>
+       <p><%= user.followers.count %></p>
+     </div>
+     <div class="col-md-2 text-center">
+       <span class="badge badge-info">フォロワー</span>
+       <p><%= user.followeds.count %></p>
+     </div>
+     <div class="col-md-2 text-center">
+       <%= link_to 'Show', user ,class: 'btn btn--orange btn--circle btn--circle-a btn--shadow'%>
+     </div>
+
+     <div class="sample col-md-3 text-center">
+        <% if current_user != user %>
+        <% if current_user.following?(user) %>
+      <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-info btn--radius" %>
+        <% else %>
+       <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-info btn--radius" %>
         <% end %>
-        </td>
+        <% end %>
+    </div>
+    </div>
+     <% end %>
 
-        <td>
-         <%= link_to user_path(user) do %>
-         <%= user.name %>
-         <% end %>
-        </td>
+     <%= paginate @user %>
 
-        <td>
-         <%= link_to follows_user_path(user) do %>
-         <p>フォロー<%= user.followers.count %></p>
-         <% end %>
-        </td>
-
-        <td>
-         <%= link_to followers_user_path(user) do %>
-         <p>フォロワー<%= user.followeds.count %></p>
-         <% end %>
-        </td>
-       </tr>
-      <% end %>
-      <%= paginate @user %>
-     </tbody>
-    </table>
-
-   </div>
-  </div>
- </div>
+</div>

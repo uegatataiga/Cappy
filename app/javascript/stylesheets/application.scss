@@ -148,3 +148,34 @@ white-space:nowrap;
 .sample {
  padding-top: 0.5em;
 }
+
+.text-body {
+  border: 2px solid #aaa;
+  padding: 0.5em;
+
+}
+.uses{
+  background-color:#EEEEEE;
+  padding: 0.5em;
+}
+
+.forr{
+  padding: 0.5em;
+}
+
+.fa-arrow-alt-circle-left {
+  font-size: 50px;
+  position: absolute;
+  z-index: 100;
+  left: -100px;
+  top: 300px;
+}
+
+.fa-arrow-alt-circle-right {
+  font-size: 50px;
+  position: absolute;
+  z-index: 100;
+  right: -100px;
+  top: 300px
+}
+

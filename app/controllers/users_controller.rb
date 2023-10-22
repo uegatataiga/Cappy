@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @following_users = @user.following_users
     @follower_users = @user.follower_users
     @items = @user.items
-    favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
   end
 
   def mypage
@@ -38,7 +37,7 @@ class UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-    @users = user.following_users.per(8)
+    @users = user.following_users.page(params[:page]).per(8)
   end
 
   def followers
@@ -72,7 +71,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image, :is_deleted)
   end
 
-  def ensure_correct_user
+  def ensure_currect_user
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(current_user)

@@ -30,6 +30,7 @@
         <p class="card-text"><%= item.rakuten_name.truncate(12, omission: '...')  %></p>
         <p class="card-text">ジャンル：<%= item.genre.name %></p>
       <% end %>
+        <p class="text-center" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></p>
       </div>
     <% end %>
 

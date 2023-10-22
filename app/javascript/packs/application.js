@@ -10,6 +10,7 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
+require("./slick")
 
 import "../stylesheets/application"
 
