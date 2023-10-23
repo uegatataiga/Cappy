@@ -89,38 +89,32 @@
 </div>
 </div>
    <div id="section2" class="tab-pane fade show list">
-    <table class='table table-striped'>
-     <thead>
-      <tr>
-       <th></th>
-       <th>Title</th>
-       <th>Tag</th>
-       <th colspan="3"></th>
-      </tr>
-     </thead>
+   <table class="table table-striped">
 
      <tbody>
       <% @items.each do |item| %>
       <tr>
-        <td><%= link_to(item.user) do %>
-          <%= image_tag item.user.get_profile_image, size:'50x50' %>
-          <% end %>
+        <td><% if item.rakuten_image.blank? %>
+       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '50x50' %>
+       <% else %>
+        <%= image_tag item.rakuten_image, class: "border border-secondary", size: '50x50' %>
+       <% end %>
         </td>
         <td><%= link_to item.name,item %></td>
         <td id="favorite<%= item.id %>" >
         <%= render 'favorites/favorite', item: item %>
         </td>
         <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-        <td><%= render "items/static_rate", item: item %></td>
+       </tr>
       <% end %>
      </tbody>
     </table>
-   </div>
 </div>
 
 </div>
 </div>
 </div>
 </div>
+
 
 

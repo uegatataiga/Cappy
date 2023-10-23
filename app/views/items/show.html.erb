@@ -33,10 +33,9 @@
 
    <% if @item.images.attached? %>
   <div class='col-md-12 item'>
-
-  <div class="slider" style="text-align: center;">
+  <div class="slider mx-auto" style="width:480px;">
     <% @item.images.each do |image| %>
-    <%= image_tag image.variant( resize: "480x300") %>
+    <%= image_tag image.variant(resize:'480x300').processed ,style: "height: 300px;"%>
      <% end %>
   </div>
   </div>

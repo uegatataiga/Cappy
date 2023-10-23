@@ -12,11 +12,15 @@
      </div>
      <div class="col-md-2 text-center">
        <span class="badge badge-primary">フォロー</span>
-       <p><%= user.followers.count %></p>
+       <%= link_to follows_user_path(user), class: 'text-dark' do %>
+        <p><%= user.followers.count %></p>
+        <% end %>
      </div>
      <div class="col-md-2 text-center">
        <span class="badge badge-info">フォロワー</span>
-       <p><%= user.followeds.count %></p>
+       <%= link_to followers_user_path(user), class: 'text-dark' do %>
+        <p><%= user.followeds.count %></p>
+        <% end %>
      </div>
      <div class="col-md-2 text-center">
        <%= link_to 'Show', user ,class: 'btn btn--orange btn--circle btn--circle-a btn--shadow'%>

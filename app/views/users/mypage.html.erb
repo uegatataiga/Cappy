@@ -78,9 +78,11 @@
      <tbody>
       <% @items.each do |item| %>
       <tr>
-        <td><%= link_to(item.user) do %>
-          <%= image_tag item.user.get_profile_image, class: "text-dark", size:'50x50' %>
-          <% end %>
+        <td><% if item.rakuten_image.blank? %>
+       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '50x50' %>
+       <% else %>
+        <%= image_tag item.rakuten_image, class: "border border-secondary", size: '50x50' %>
+       <% end %>
         </td>
         <td><%= link_to item.name,item %></td>
         <td id="favorite<%= item.id %>" >

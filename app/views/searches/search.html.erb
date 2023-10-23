@@ -1,14 +1,11 @@
-<table class="table table-hover table-inverse">
+
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
-  <h2>Users search for "<%= @word %>"</h2>
     <div class="container mt-3">
+<h3>ユーザー検索ワード "<%= @word %>"</h3>
+  <h5>検索結果"<%= @users.count %>"件</h5>
 
-   <h3 class="fas fa-users text-secondary">フォロワー一覧</h3>
-
-
-
-<% @user.each do |user| %>
+<% @users.each do |user| %>
     <div class= "row user-group shadow ">
      <div class="col-md-2 text-center">
      <%= image_tag user.get_profile_image, class: "rounded-circle",size:"50x50"  %></br>
@@ -16,11 +13,15 @@
      </div>
      <div class="col-md-2 text-center">
        <span class="badge badge-primary">フォロー</span>
-       <p><%= user.followers.count %></p>
+       <%= link_to follows_user_path(user), class: 'text-dark' do %>
+        <p><%= user.followers.count %></p>
+        <% end %>
      </div>
      <div class="col-md-2 text-center">
        <span class="badge badge-info">フォロワー</span>
-       <p><%= user.followeds.count %></p>
+       <%= link_to followers_user_path(user), class: 'text-dark' do %>
+        <p><%= user.followeds.count %></p>
+        <% end %>
      </div>
      <div class="col-md-2 text-center">
        <%= link_to 'Show', user ,class: 'btn btn--orange btn--circle btn--circle-a btn--shadow'%>
@@ -38,31 +39,31 @@
     </div>
      <% end %>
 
-     <%= paginate @user %>
+     <%= paginate @users %>
 
 </div>
   <% else %>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>opinion</th>
-
-      </tr>
-    <tbody>
-    <h2>Items search for "<%= @word %>"</h2>
+    <div class="container mt-3">
+     <h2>商品検索ワード "<%= @word %>"</h2>
+     <h5>検索結果"<%= @items.count %>"件</h5>
+     <div class="row">
     <% @items.each do |item| %>
-      <tr>
-        <td>
-          <%= link_to user_path(item.user) do %>
-            <%= image_tag item.user.get_profile_image, class: "rounded-circle", size: '50x50' %>
-          <% end %>
-        </td>
-        <td><%= link_to item.name , item_path(item.id) %></td>
-        <td><%= item.introduction %></td>
-        </tr>
+      <div class="card shadow">
+      <%= link_to item_path(item), class: "card-body text-dark text-center" do %>
+      <img class="card-img-top">
+       <% if item.rakuten_image.blank? %>
+       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %>
+       <% else %>
+        <%= image_tag item.rakuten_image, class: "border border-secondary" %>
+       <% end %>
+      </img>
+        <p class="card-text"><%= item.rakuten_name.truncate(12, omission: '...')  %></p>
+        <p class="card-text">ジャンル：<%= item.genre.name %></p>
       <% end %>
-    </tbody>
+        <p class="text-center" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></p>
+      </div>
+      <% end %>
   <% end %>
-</table>
+  </div>
+  </div>
