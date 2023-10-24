@@ -1,24 +1,35 @@
-<div class='container edit col-md-11 mt-5'>
- <div class="row">
+<div class='container  col-md-11'>
+ <h2 class="fas fa-cat text-secondary mt-3">投稿詳細</h2>
+ <div class="row edit">
  <div class='col-md-6'>
+  <% if user_signed_in? %>
+  <% if current_user == @user || current_user.admin? %>
+  <%= link_to "編集", edit_item_path, class: 'btn btn--orange' %>
+  <%= link_to '削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger"%>
+  <% end %>
+  <% end %>
   <h5><%= @item.rakuten_name %></h5>
  </div>
- <% if user_signed_in? %>
-  <% if current_user == @user || current_user.admin? %>
 <div class='text-center col-md-6'>
-<%= link_to "編集", edit_item_path, class: 'btn btn--orange' %></br>
-<%= link_to '削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger"%>
+ <h5>投稿者</h5>
+ <%= link_to user_path(@user) do %>
+ <div class='user-badge text-dark text-left shadow'>
+ <%= image_tag @user.get_profile_image, class: "rounded-circle",size:"50x50"  %>
+ &nbsp;<%= @user.name %>
+ </div>
+ <% end %>
 </div>
-<% end %>
-<% end %>
  <div class="media col-md-12 mt-3">
   <img class="rounded-lg">
-   <% unless @item.rakuten_image.blank? %>
-  <%= image_tag @item.rakuten_image %>
- <% end %>
+   <% if @item.rakuten_image.blank? %>
+     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '200x200' %>
+   <% else %>
+     <%= image_tag @item.rakuten_image, class: "border border-secondary", size: '200x200' %>
+   <% end %>
  </img>
 
  <div class="media-body">
+    <p class= "border-bottom">商品名：<%= @item.name %></p>
     <p class= "border-bottom">投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
     <p class= "border-bottom">URL：<%= link_to @item.rakuten_url, @item.rakuten_url %></p>
     <p class= "border-bottom">ジャンル：<%= @item.genre.name %></p>
@@ -27,13 +38,14 @@
 </div>
 </div>
  <div class='col-md-12 item'>
-  <h5>商品説明</h>
+  <h5>・商品説明</h>
   <p><%= @item.introduction %></p>
  </div>
 
    <% if @item.images.attached? %>
   <div class='col-md-12 item'>
-  <div class="slider mx-auto" style="width:480px;">
+   <h5>・商品画像</h>
+  <div class="sliders mx-auto" style="width:480px;">
     <% @item.images.each do |image| %>
     <%= image_tag image.variant(resize:'480x300').processed ,style: "height: 300px;"%>
      <% end %>
@@ -45,20 +57,23 @@
 
 
   <% if @item.video.attached? %>
- <div class='col-md-12 item text-center'>
+ <div class='col-md-12 item'>
+ <h5>・商品動画</h>
+ <div class='text-center'>
  <video src="<%= rails_blob_path(@item.video) %>" type="video/mp4" controls width="480" height="300"></video>
+ </div>
  </div>
  <% end %>
 
 <div class='col-md-12 item'>
  <div id="comments">
-  <%= render 'comments/show', item: @item, comments: @comment %>
+  <%= render 'comments/show', item: @item, comments: @comment, user: @user %>
  </div>
 </div>
 
 <div class='col-md-12 item'>
  <div id="comment-form">
- <%= render 'comments/form', item: @item, comments: @comment %>
+ <%= render 'comments/form', item: @item, comments: @comment, user: @user %>
  </div>
 </div>
 </div>

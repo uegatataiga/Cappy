@@ -1,107 +1,89 @@
 <div class="container mt-3">
   <div class="row">
    <h3 class="fas fa-home  col-md-7 text-secondary">マイページ</h3>
- <div class="mypage shadow col-md-7">
-  <div class="tabs mt-3">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active text-dark" data-toggle="tab" href="#section1">my情報</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark" data-toggle="tab" href="#section2">my投稿</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark" data-toggle="tab" href="#section3">いいね一覧</a>
-    </li>
-  </ul>
+   <div class="mypage shadow col-md-7">
+     <div class="tabs mt-3">
+       <ul class="nav nav-tabs">
+         <li class="nav-item">
+           <a class="nav-link active text-dark" data-toggle="tab" href="#section1">my情報</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link text-dark" data-toggle="tab" href="#section2">my投稿</a>
+         </li>
+       </ul>
 
-  <div class="tab-content">
-    <div id="section1" class="tab-pane fade show active">
-     <div class="row">
+       <div class="tab-content">
+         <div id="section1" class="tab-pane fade show active">
+           <div class="row">
+             <div class="col-md-12 text-center mt-2">
+               <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '150x150' %></br>
+               <%= @user.name %>
+             </div>
+             <div class="col-md-12">
+               <%= link_to favorites_user_path(@user) do %>
+                 <h5 class="text-dark">♡いいね一覧へ</h5>
+               <% end %>
+                 <h5>・紹介文</h5>
+                   <div class="text-body">
+                     <%= @user.introduction %>
+                   </div>
+             </div>
+             <div class="uses col-md-6 text-center mt-4">
+             フォロー
+             </div>
+             <div class="uses col-md-6 text-center mt-4">
+               <%= link_to follows_user_path(@user), class: 'text-dark' do %>
+               <%= @user.followers.count %>
+               <% end %>
+             </div>
+             <div class="forr col-md-6 text-center">
+             フォロワー
+             </div>
+             <div class="forr col-md-6 text-center">
+               <%= link_to followers_user_path(@user), class: 'text-dark' do %>
+               <%= @user.followeds.count %>
+               <% end %>
+             </div>
+             <div class="uses col-md-6 text-center">
+             会員ステータス
+             </div>
+             <div class="uses col-md-6 text-center">
+               <% if @user.is_deleted == false %>
+                 有効
+               <% else %>
+                 退会
+               <% end %>
+             </div>
+             <div class="compile col-md-12 text-center">
+               <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
+             </div>
+           </div>
+         </div>
 
-        <div class="col-md-12 text-center">
-        <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '150x150' %></br>
-        <%= @user.name %>
+         <div id="section2" class="tab-pane fade show list">
+           <table class="table table-striped">
+             <tbody>
+              <% @items.each do |item| %>
+                <tr>
+                  <td>
+                   <% if item.rakuten_image.blank? %>
+                     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '50x50' %>
+                   <% else %>
+                     <%= image_tag item.rakuten_image, class: "border border-secondary", size: '50x50' %>
+                   <% end %>
+                  </td>
+                  <td><%= link_to item.name,item, class: "text-dark"%></td>
+                  <td id="favorite<%= item.id %>" >
+                    <%= render 'favorites/favorite', item: item %>
+                  </td>
+                  <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
+                </tr>
+               <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
-
-         <div class="col-md-12">
-         <h5>・紹介文</h5>
-         <div class="text-body">
-         <%= @user.introduction %>
-         </div>
-         </div>
-
-      <div class="uses col-md-6 text-center mt-4">
-       フォロー
       </div>
-      <div class="uses col-md-6 text-center mt-4">
-        <%= link_to follows_user_path(@user), class: 'text-dark' do %>
-        <%= @user.followers.count %>
-        <% end %>
-     </div>
-
-
-      <div class="forr col-md-6 text-center">
-       フォロワー
-      </div>
-      <div class="forr col-md-6 text-center">
-        <%= link_to followers_user_path(@user), class: 'text-dark' do %>
-        <%= @user.followeds.count %>
-        <% end %>
-      </div>
-
-
-      <div class="uses col-md-6 text-center">
-       会員ステータス
-      </div>
-      <div class="uses col-md-6 text-center">
-       <% if @user.is_deleted == false %>
-        有効
-        <% else %>
-        退会
-        <% end %>
-       </div>
-
-     <%= link_to favorites_user_path(@user) do %>
-        <p class="text-dark">♡いいね一覧へ</p>
-        <% end %>
-
-    <div class="compile col-md-12 text-center">
-     <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
     </div>
-    </div>
-    </div>
-    <div id="section2" class="tab-pane fade show list">
-
-    <table class="table table-striped">
-
-     <tbody>
-      <% @items.each do |item| %>
-      <tr>
-        <td><% if item.rakuten_image.blank? %>
-       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '50x50' %>
-       <% else %>
-        <%= image_tag item.rakuten_image, class: "border border-secondary", size: '50x50' %>
-       <% end %>
-        </td>
-        <td><%= link_to item.name,item %></td>
-        <td id="favorite<%= item.id %>" >
-        <%= render 'favorites/favorite', item: item %>
-        </td>
-        <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-       </tr>
-      <% end %>
-     </tbody>
-    </table>
-   </div>
-
-   <div id="section3" class="tab-pane fade show list">
-    <%= render "favorites", favorite_items: @favorite_items %>
-   </div>
-
-
-   </div>
   </div>
-</div>
-</div>
 </div>

@@ -1,2 +1,36 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class='container col-md-12 text-center'>
+  <div class='row'>
+     <div class="col-md-12">
+        <div class="slider mx-auto" style="width:550px;">
+            <%= image_tag 'IMG_0995.JPG', style: "height: 300px;" %>
+            <%= image_tag 'IMG_1119.JPG', style: "height: 300px;" %>
+            <%= image_tag 'IMG_1221.JPG', style: "height: 300px;" %>
+            <%= image_tag 'IMG_1529.JPG', style: "height: 300px;" %>
+            <%= image_tag 'IMG_1279.JPG', style: "height: 300px;"%>
+        </div>
+     </div>
+     <div class="col-lg-12">
+       <h3>新着情報</h3>
+        <% @ramdom.each do |item| %>
+          <div class="card shadow">
+            <img class="card-img-top">
+              <% if item.rakuten_image.blank? %>
+                <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %>
+              <% else %>
+                <%= image_tag item.rakuten_image, class: "border border-secondary" %>
+              <% end %>
+            </img>
+            <p><%= item.name.truncate(12, omission: '...')  %></p>
+            <p>ジャンル：<%= item.genre.name %></p>
+            <p class="text-right"><%= item.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        <% end %>
+        <% if user_signed_in? %>
+          <div class ="text-right">
+            <%= link_to 'すべての商品を見る > ', items_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+

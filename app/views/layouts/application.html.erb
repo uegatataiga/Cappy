@@ -19,9 +19,11 @@
      <div class="flash-message <%= message_type %>"><%= message %></div>
      <% end %>
       <div class="row">
-       <div class="col-md-2 offset-2 mt-4">
+     <% if user_signed_in? %>
+       <div class="col-md-2 offset-1 mt-4">
      <%= render 'layouts/sidebar' %>
        </div>
+      <% end %>
      <div class="col-md-8">
     <%= yield %>
     </div>
@@ -34,6 +36,16 @@
 </html>
 <script>
 $(function() {
-  $('.slider').slick();
+  $('.sliders').slick({
+  });
+});
+
+$(document).on('turbolinks:load',function() {
+  $('.slider').slick({
+      arrows: false,  //ボタン非表示
+      autoplay: true, //自動再生
+      autoplaySpeed: 3000, //再生スピード
+  });
 });
 </script>
+

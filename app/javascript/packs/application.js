@@ -27,3 +27,17 @@ window.raty = function(elem,opt) {
 
 
 window.$ = window.jQuery = require('jquery');
+
+$(document).on('turbolinks:load',function() {
+  $('.sliders').slick({
+      arrows: false,  //ボタン非表示
+      autoplay: true, //自動再生
+      autoplaySpeed: 2500, //再生スピード
+  });
+});
+
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+

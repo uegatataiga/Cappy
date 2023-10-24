@@ -18,7 +18,7 @@
 }
 
 .card-text {
-  height: 25px;
+  height: 15px;
 }
 
 .sidebar {
@@ -134,9 +134,6 @@ a.btn--circle {
    padding: 1em;
 }
 
-.p{
-white-space:nowrap;
-}
 
 .user-group{
   margin: 20px;
@@ -162,22 +159,26 @@ white-space:nowrap;
   padding: 0.5em;
 }
 
-.fa-arrow-alt-circle-left {
-  font-size: 50px;
-  position: absolute;
-  z-index: 100;
-  left: -100px;
-  top: 300px;
-}
-
-.fa-arrow-alt-circle-right {
-  font-size: 50px;
-  position: absolute;
-  z-index: 100;
-  right: -100px;
-  top: 300px
-}
+.slick-next{ right:0!important; }
+.slick-prev{ left:0!important; }
+.slick-arrow{ z-index:2!important; }
 
 .slider {
   text-align:center;
 }
+
+.nav-items {
+  border-bottom: 1px solid #333;
+}
+
+.media-body {
+  margin-left: 10px;
+}
+
+.user-badge {
+  border: 2px solid #FFCC99;
+  border-radius: 15px;
+  display:inline-block;
+  padding: 0.5em;
+}
+
