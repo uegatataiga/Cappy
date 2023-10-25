@@ -49,21 +49,32 @@
      <h5>検索結果"<%= @items.count %>"件</h5>
      <div class="row">
     <% @items.each do |item| %>
-      <div class="card shadow">
-      <%= link_to item_path(item), class: "card-body text-dark text-center" do %>
-      <img class="card-img-top">
-       <% if item.rakuten_image.blank? %>
-       <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %>
-       <% else %>
-        <%= image_tag item.rakuten_image, class: "border border-secondary" %>
-       <% end %>
-      </img>
-        <p class="card-text"><%= item.rakuten_name.truncate(12, omission: '...')  %></p>
-        <p class="card-text">ジャンル：<%= item.genre.name %></p>
+
+  <div class="row media-card shadow">
+
+  <div class="col-md-5 text-center">
+   <% if item.rakuten_image.blank? %>
+     <%= link_to item_path(item) do %>
+     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
+     <% end %>
+   <% else %>
+     <%= link_to item_path(item) do %>
+     <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
+     <% end %>
+   <% end %>
+   <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
+ </div>
+
+ <div class="col-md-7">
+    <div class="line">商品名：<%= item.name%></div>
+    <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+    <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+    <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+</div>
+
+</div>
       <% end %>
-        <p class="text-center" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></p>
-      </div>
-      <% end %>
+      <%= paginate @items %>
   <% end %>
   </div>
   </div>

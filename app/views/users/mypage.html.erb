@@ -54,9 +54,13 @@
                  退会
                <% end %>
              </div>
+             <% unless @user = User.guest %>
              <div class="compile col-md-12 text-center">
                <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
              </div>
+             <% else %>
+             <div class="compile col-md-12 text-center"></div>
+             <% end %>
            </div>
          </div>
 
@@ -79,6 +83,7 @@
                   <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
                 </tr>
                <% end %>
+               <%= paginate @items %>
               </tbody>
             </table>
           </div>

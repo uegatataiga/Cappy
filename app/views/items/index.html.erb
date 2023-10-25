@@ -1,6 +1,6 @@
   <div class='container'>
    <h2 class="fas fa-cat text-secondary mt-3">投稿一覧</h2>
-    <nav class="nav nav-items">
+    <nav class="nav nav-items col-md-10">
       <%= link_to '新しい順', items_path(latest: "true"), class: "nav-link list text-dark"%>
       <%= link_to '古い順', items_path(old: "true"), class: "nav-link list text-dark" %>
       <%= link_to 'いいねの多い順', items_path(favorites_count: "true"), class: "nav-link list text-dark" %>
@@ -9,21 +9,33 @@
 
     <div class="row">
       <% @item.each do |item| %>
-        <div class="card shadow">
-          <%= link_to item_path(item), class: "card-body text-dark text-center" do %>
-          <img class="card-img-top">
-            <% if item.rakuten_image.blank? %>
-              <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %>
-            <% else %>
-              <%= image_tag item.rakuten_image, class: "border border-secondary" %>
-            <% end %>
-          </img>
-              <p><%= item.name.truncate(12, omission: '...')  %></p>
-              <p>ジャンル：<%= item.genre.name %></p>
-            <% end %>
-          <p class="text-center" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></p>
-          <p class="text-right"><%= item.created_at.strftime('%Y/%m/%d') %></p>
-        </div>
+
+  <div class="row media-card shadow">
+
+  <div class="col-md-5 text-center">
+   <% if item.rakuten_image.blank? %>
+     <%= link_to item_path(item) do %>
+     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
+     <% end %>
+   <% else %>
+     <%= link_to item_path(item) do %>
+     <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
+     <% end %>
+   <% end %>
+   <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
+ </div>
+
+ <div class="col-md-7">
+    <div class="line">商品名：<%= item.name%></div>
+    <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+    <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+    <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+</div>
+
+</div>
       <% end %>
+      <%= paginate @item %>
     </div>
   </div>
+
+

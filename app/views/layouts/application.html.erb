@@ -24,7 +24,7 @@
      <%= render 'layouts/sidebar' %>
        </div>
       <% end %>
-     <div class="col-md-8">
+     <div class="col-md-8 mx-auto">
     <%= yield %>
     </div>
     </div>
@@ -37,6 +37,8 @@
 <script>
 $(function() {
   $('.sliders').slick({
+    prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+    nextArrow: '<button class="slide-arrow next-arrow"></button>'
   });
 });
 

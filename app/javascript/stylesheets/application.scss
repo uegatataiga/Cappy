@@ -1,5 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 
+.home {
+  text-aligen: center;
+}
 .edit {
   border: 2px solid #aaa;
 
@@ -13,12 +16,21 @@
 
 .card-body {
   padding-top: 0.5em;
-  height: 256px;
-  width: 213px;
+
 }
 
-.card-text {
-  height: 15px;
+.media-card {
+  margin: 20px;
+  padding-top: 1.5em;
+
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.line {
+  height: 32.5px;
+  padding-top: 0.5em;
+  border-bottom: 1px solid #aaa;
 }
 
 .sidebar {
@@ -182,3 +194,33 @@ a.btn--circle {
   padding: 0.5em;
 }
 
+.slide-arrow {
+  background-color: #333;
+  bottom: 0;
+  height: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+.prev-arrow {
+  border-bottom: 20px solid  #fff;
+  border-left: 0;
+  border-right: 20px solid #000;
+  border-top: 20px solid #fff;
+  left: -40px;
+}
+.next-arrow {
+  border-bottom: 20px solid  #fff;
+  border-left: 20px solid #000;
+  border-right: 0;
+  border-top: 20px solid #fff;
+  right: -40px;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  padding: 0;
+}

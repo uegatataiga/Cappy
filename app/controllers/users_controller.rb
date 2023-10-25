@@ -3,17 +3,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
-    @items = @user.items
+    @items = @user.items.page(params[:page]).per(8)
   end
 
   def mypage
     @user = current_user
     @following_users = @user.following_users
     @follower_users = @user.follower_users
-    favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
-    @favorite_items = Item.find(favorites)
-    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(8)
-    @items = @user.items
+    @items = @user.items.page(params[:page]).per(8)
   end
 
   def edit

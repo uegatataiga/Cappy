@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
 
   def index
-    @notifications = current_user.notifications.order(created_at: :desc).page(params[:page]).per(5)
+    @notifications = current_user.notifications.order(created_at: :desc).page(params[:page]).per(8)
     @notifications.where(checked: false).each do |notification|
       notification.update(checked: true)
     end

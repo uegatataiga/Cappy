@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  devise_scope :user do
+    post "guest_sign_in", to: "sessions#guest_sign_in"
+  end
+
   root to: 'homes#top'
   get 'items/search'
   get 'home/about' => 'homes#about', as: 'about'
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create, :destroy]
   end
+
 
   resources :items, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
     resource :favorites, only: [:index, :create, :destroy]

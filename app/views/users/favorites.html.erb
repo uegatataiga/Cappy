@@ -1,29 +1,32 @@
-<div class="container mt-3">
-  <div class="row">
-   <h3 class="fas fa-heart col-md-9  text-secondary">いいね一覧</h3>
-    <div class="edit shadow col-md-9">
+  <div class="container mt-3">
+    <div class="row">
+     <h3 class="fas fa-heart col-md-9  text-secondary">いいね一覧</h3>
       <table class="table table-striped">
         <tbody>
           <% @favorite_items.each do |item| %>
-            <tr>
-              <td>
-                <% if item.rakuten_image.blank? %>
-                  <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '50x50' %>
-                <% else %>
-                  <%= image_tag item.rakuten_image, class: "border border-secondary", size: '50x50' %>
+            <div class="row media-card shadow">
+              <div class="col-md-5 text-center">
+              <% if item.rakuten_image.blank? %>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
                 <% end %>
-              </td>
-              <td><%= link_to item.name,item %></td>
-              <td>ジャンル：<%= item.genre.name %></td>
-              <td id="favorite<%= item.id %>" >
-                <%= render 'favorites/favorite', item: item %>
-              </td>
-              <td>投稿日：<%= item.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
+              <% else %>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
+                <% end %>
+              <% end %>
+                <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
+              </div>
+              <div class="col-md-7">
+                <div class="line">商品名：<%= item.name%></div>
+                <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+                <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+                <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+              </div>
+            </div>
           <% end %>
           <%= paginate @favorite_items %>
-         </tbody>
-       </table>
+        </tbody>
+      </table>
     </div>
   </div>
-</div>

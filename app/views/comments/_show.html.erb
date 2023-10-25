@@ -14,10 +14,9 @@
      <%= comment.comment %>
      </div>
      <div class="col-md-2"><%= comment.created_at.strftime('%Y/%m/%d') %></br>
-     <% if user_signed_in? %>
-     <% if current_user == user || current_user.admin? %>
+
+     <% if comment.user == current_user || current_user.admin? %>
      <%= link_to "削除", item_comment_path(item, comment), method: :delete, remote: true, data: {"turbolinks" => false}, class: 'btn btn-outline-danger' %>
-     <% end %>
      <% end %>
      </div>
      </div>
