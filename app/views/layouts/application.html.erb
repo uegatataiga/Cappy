@@ -23,13 +23,15 @@
        <div class="col-md-2 offset-1 mt-4">
      <%= render 'layouts/sidebar' %>
        </div>
-      <% end %>
-     <div class="col-md-8 mx-auto">
+     <div class="col-md-8">
     <%= yield %>
     </div>
+    <% else %>
+    <div class="col-md-8 mx-auto">
+    <%= yield %>
     </div>
-
-
+    <% end %>
+    </div>
     <%= render 'layouts/footer' %>
 
   </body>

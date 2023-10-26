@@ -1,8 +1,8 @@
 <div class="container mt-3">
   <div class="row">
-   <h3 class="fas fa-home  col-md-7 text-secondary">マイページ</h3>
-   <div class="mypage shadow col-md-7">
-     <div class="tabs mt-3">
+   <h3 class="fas fa-home  col-md-8 text-secondary">マイページ</h3>
+   <div class="mypage shadow col-md-8">
+     <div class="tabs">
        <ul class="nav nav-tabs">
          <li class="nav-item">
            <a class="nav-link active text-dark" data-toggle="tab" href="#section1">my情報</a>
@@ -54,15 +54,11 @@
                  退会
                <% end %>
              </div>
-             <% unless @user = User.guest %>
              <div class="compile col-md-12 text-center">
                <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
              </div>
-             <% else %>
-             <div class="compile col-md-12 text-center"></div>
-             <% end %>
-           </div>
          </div>
+        </div>
 
          <div id="section2" class="tab-pane fade show list">
            <table class="table table-striped">

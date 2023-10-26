@@ -51,15 +51,23 @@
   border: 2px solid #aaa;
 
   border-radius: 15px;
+  padding: 2em;
 }
 
+.enduser {
+  border: 2px solid #aaa;
+
+  border-radius: 15px;
+  padding-left: 2em;
+  padding-right: 2em;
+}
 .list-group {
   border: 2px solid #aaa;
 　padding: 2em;
 }
 
 .compile {
-  padding-bottom: 2em;
+  padding-top: 2em;
 }
 
 .status {
