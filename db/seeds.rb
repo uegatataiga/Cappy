@@ -1,9 +1,10 @@
 Genre.create([
-    { name: '小説' },
-    { name: '漫画' },
-    { name: '伝記'},
-    { name: '実用書'},
-    { name: '教育書'},
+    { name: '猫じゃらし' },
+    { name: 'ボール型' },
+    { name: '電動'},
+    { name: '知育玩具'},
+    { name: 'トンネル'},
+    { name: 'その他'},
     ])
 
 User.create!(
