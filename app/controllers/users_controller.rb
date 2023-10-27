@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
     @favorite_items = Item.find(favorites)
-    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(8)
+    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(4)
   end
 
   def check

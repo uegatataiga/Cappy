@@ -1,4 +1,19 @@
 @use '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+h1 {
+  font-family: 'Caveat', cursive;
+}
+
+.introduction {
+  border-top: 2px solid #aaa;
+  border-bottom: 2px solid #aaa;
+  padding-top: 2em;
+}
+.imagetop {
+  border-bottom: 2px solid #aaa;
+  padding-bottom: 1em;
+}
 
 .home {
   text-aligen: center;

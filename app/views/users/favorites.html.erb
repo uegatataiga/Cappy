@@ -1,8 +1,6 @@
   <div class="container mt-3">
-    <div class="row">
      <h3 class="fas fa-heart col-md-9  text-secondary">いいね一覧</h3>
-      <table class="table table-striped">
-        <tbody>
+        <div class="row">
           <% @favorite_items.each do |item| %>
             <div class="row media-card shadow">
               <div class="col-md-5 text-center">
@@ -25,8 +23,8 @@
               </div>
             </div>
           <% end %>
+          </div>
+          <div class="col-md-10">
           <%= paginate @favorite_items %>
-        </tbody>
-      </table>
-    </div>
+          </div>
   </div>

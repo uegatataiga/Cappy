@@ -79,9 +79,9 @@
                   <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
                 </tr>
                <% end %>
-               <%= paginate @items %>
               </tbody>
             </table>
+            <%= paginate @items %>
           </div>
         </div>
       </div>
