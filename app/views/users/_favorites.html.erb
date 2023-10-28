@@ -1,27 +1,27 @@
 <table class="table table-striped">
-    <tbody>
-     <% favorite_items.each do |item| %>
+  <tbody>
+    <% favorite_items.each do |item| %>
       <tr>
-       <td>
-        <% if item.images.attached? %>
-         <%= link_to(item) do %>
-          <%= image_tag item.get_images[0], size:'50x50' %>
-         <% end %>
-        <% elsif %>
-         <%= link_to(item) do %>
-          <%= image_tag item.get_images, size:'50x50' %>
-         <% end %>
-        <% end %>
-       </td>
-       <td><%= link_to item.name,item_path(item) , class: 'text-dark' %></td>
-       <td><%= item.introduction %></td>
-       <td id="favorite<%= item.id %>" >
-        <%= render 'favorites/favorite', item: item %>
-       </td>
-       <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
-       <td><%= render "items/static_rate", item: item  %></td>
+        <td>
+          <% if item.images.attached? %>
+            <%= link_to(item) do %>
+              <%= image_tag item.get_images[0], size:'50x50' %>
+            <% end %>
+          <% elsif %>
+            <%= link_to(item) do %>
+               <%= image_tag item.get_images, size:'50x50' %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= link_to item.name,item_path(item) , class: 'text-dark' %></td>
+        <td><%= item.introduction %></td>
+        <td id="favorite<%= item.id %>" >
+          <%= render 'favorites/favorite', item: item %>
+        </td>
+        <td>コメント件数:<span id="comment_count"><%= item.comments.count %></span></td>
+        <td><%= render "items/static_rate", item: item  %></td>
       </tr>
-     <% end %>
-     <%= paginate favorite_items %>
-    </tbody>
-   </table>
+    <% end %>
+    <%= paginate favorite_items %>
+  </tbody>
+</table>

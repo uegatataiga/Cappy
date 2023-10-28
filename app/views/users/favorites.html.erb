@@ -1,9 +1,10 @@
   <div class="container mt-3">
-     <h3 class="fas fa-heart col-md-9  text-secondary">いいね一覧</h3>
-        <div class="row">
-          <% @favorite_items.each do |item| %>
-            <div class="row media-card shadow">
-              <div class="col-md-5 text-center">
+    <h3 class="fas fa-heart col-md-9  text-secondary">いいね一覧</h3>
+
+      <div class="row">
+        <% @favorite_items.each do |item| %>
+          <div class="row media-card shadow">
+            <div class="col-md-5 text-center">
               <% if item.rakuten_image.blank? %>
                 <%= link_to item_path(item) do %>
                   <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
@@ -13,18 +14,20 @@
                   <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
                 <% end %>
               <% end %>
-                <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
-              </div>
-              <div class="col-md-7">
-                <div class="line">商品名：<%= item.name%></div>
-                <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
-                <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
-                <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
-              </div>
+              <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
             </div>
-          <% end %>
+
+            <div class="col-md-7">
+              <div class="line">商品名：<%= item.name%></div>
+              <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+              <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+            </div>
           </div>
-          <div class="col-md-10">
-          <%= paginate @favorite_items %>
-          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-10">
+        <%= paginate @favorite_items %>
+      </div>
   </div>

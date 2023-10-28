@@ -2,9 +2,9 @@ class ItemsController < ApplicationController
      before_action :authenticate_user!
 
   def new
-    if Item.where(user_id:current_user.id,rakuten_code:params[:rakuten_code]).count == 0
+    if Item.where(user_id:current_user.id,rakuten_code:params[:rakuten_code]).count == 0 #ユーザーが商品を投稿済みか確認
       @item = Item.new(rakuten_image:params[:rakuten_image][0],rakuten_name:params[:rakuten_name],rakuten_url:params[:rakuten_url],rakuten_introduction:params[:rakuten_introduction],rakuten_code:params[:rakuten_code])
-    else
+    else #投稿済みの場合ページ遷移しない
       redirect_to request.referer,flash: {alert: "この商品は投稿済みです" }
     end
   end

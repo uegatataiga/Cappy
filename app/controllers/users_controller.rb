@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:item_id)
     @favorite_items = Item.find(favorites)
-    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(4)
+    @favorite_items = Kaminari.paginate_array(@favorite_items).page(params[:page]).per(8)
   end
 
   def check
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image, :is_deleted)
   end
 
-  def ensure_currect_user
+  def ensure_currect_user #投稿者だけが編集できるようにしている
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(current_user)
