@@ -50,7 +50,7 @@
               </div>
 
               <div class="uses col-md-6 text-center">
-                会員ステータス
+                ユーザーステータス
               </div>
               <div class="uses col-md-6 text-center">
                 <% if @user.is_deleted == false %>
@@ -59,7 +59,7 @@
                   退会
                 <% end %>
               </div>
-
+            <!--ゲストユーザーの場合表示しない-->
               <% if user_signed_in? %>
                 <% unless current_user.guest_user? %>
                   <div class="compile col-md-12 text-center">

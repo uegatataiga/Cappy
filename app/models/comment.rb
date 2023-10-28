@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :item
 
   validates :comment, presence: true
-
+  # 通知機能
   has_one :notification, as: :subject, dependent: :destroy
 
   after_create_commit :create_notifications

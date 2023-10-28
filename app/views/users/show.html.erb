@@ -47,7 +47,7 @@
               </div>
 
               <div class="uses col-md-6 text-center">
-                会員ステータス
+                ユーザーステータス
               </div>
               <div class="uses col-md-6 text-center">
                 <% if @user.is_deleted == false %>
@@ -66,13 +66,13 @@
                   <% end %>
                 <% end %>
               </div>
-
+              <!--管理者がログイン時のみ表示、ユーザーステータスを変更できる-->
               <% if user_signed_in? %>
   　　          　<% if current_user.admin? %>
                   <div class="col-md-12 text-center">
                     <%= form_with model: @user, url:user_path(@user), method: :patch, local: true do |f| %>
                       <div class="form-group">
-                        <%= f.label :会員ステータス %>
+                        <%= f.label :ユーザーステータス %>
                         <%= f.radio_button :is_deleted, :false %>
                         <%= f.label :is_deleted, "有効" %>
                         <%= f.radio_button :is_deleted, :true %>

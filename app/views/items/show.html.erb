@@ -3,6 +3,7 @@
 
   <div class="row edit mt-2">
     <div class='col-md-6'>
+      <!--投稿者か管理者なら編集可能-->
       <% if user_signed_in? %>
         <% if current_user == @user || current_user.admin? %>
           <%= link_to "編集", edit_item_path, class: 'btn btn--orange' %>
@@ -44,7 +45,7 @@
       <h5>・商品説明</h>
       <p><%= @item.introduction %></p>
     </div>
-
+   <!--画像がなければ表示しない-->
    <% if @item.images.attached? %>
     <div class='col-md-12 item'>
       <h5>・商品画像</h>
@@ -55,7 +56,7 @@
       </div>
     </div>
    <% end %>
-
+   <!--動画がなければ表示しない-->
    <% if @item.video.attached? %>
     <div class='col-md-12 item'>
       <h5>・商品動画</h>

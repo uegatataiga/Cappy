@@ -67,7 +67,7 @@ class User < ApplicationRecord
     end
   end
 
-
+ # ゲストユーザー
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -76,7 +76,7 @@ class User < ApplicationRecord
       user.name = "ゲストユーザー"
     end
   end
-
+# emailでゲストユーザーか判断する
   def guest_user?
      email == GUEST_USER_EMAIL
   end

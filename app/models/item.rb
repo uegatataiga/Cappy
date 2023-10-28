@@ -22,7 +22,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, presence: true
-
+ # いいね機能
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

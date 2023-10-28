@@ -1,12 +1,13 @@
 <%= link_to transition_path(notification) do %>
- <% if notification.subject.follower.guest_user? %>
-  ゲストユーザー
- <% else %>
-  <%= link_to  user_path(notification.subject.user) do %>
-   <%= image_tag notification.subject.user.get_profile_image,class: "rounded-circle", size: '50x50' %>
+<!--ゲストユーザーの場合記述変更-->
+  <% if notification.subject.follower.guest_user? %>
+    ゲストユーザー
+  <% else %>
+    <%= link_to  user_path(notification.subject.user) do %>
+      <%= image_tag notification.subject.user.get_profile_image,class: "rounded-circle", size: '50x50' %>
+    <% end %>
+    <%= link_to notification.subject.follower.name, user_path(notification.subject.follower) %>
   <% end %>
-  <%= link_to notification.subject.follower.name, user_path(notification.subject.follower) %>
- <% end %>
   さんがあなたをフォローしました
   <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
 <% end %>

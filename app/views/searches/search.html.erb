@@ -1,4 +1,5 @@
 <% if @range == "User" %>
+<!--検索ワードがuserの時-->
   <div class="container mt-3">
     <h3>ユーザー検索ワード "<%= @word %>"</h3>
     <h5>検索結果"<%= @users.count %>"件</h5>
@@ -45,8 +46,8 @@
     </div>
   </div>
 
-<% else %><!--検索対象モデルがUserではない時(= 検索対象モデルがitemの時) -->
-
+<% else %>
+<!--検索対象モデルがUserではない時(= 検索対象モデルがitemの時) -->
   <div class="container mt-3">
     <h2>商品検索ワード "<%= @word %>"</h2>
     <h5>検索結果"<%= @items.count %>"件</h5>

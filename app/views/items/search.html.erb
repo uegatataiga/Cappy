@@ -7,7 +7,7 @@
         <%= f.submit '製品名を検索', class: "form-control btn btn--orange" %>
       </div>
     <% end %>
-
+    <!--楽天の商品を検索-->
     <% if @item.present? %>
       <% @item.first(10).each do |item| %>
         <div class="list-group mt-3">
