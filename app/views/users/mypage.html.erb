@@ -54,11 +54,13 @@
                  退会
                <% end %>
              </div>
-             <% unless @user = User.guest %>
+             <% if user_signed_in? %>
+              <% unless current_user.guest_user? %>
              <div class="compile col-md-12 text-center">
                <%= link_to "編集する", edit_user_path(@user), class: 'btn btn--orange btn--radius'%>
              </div>
-             <% end %>
+               <% end %>
+               <% end %>
          </div>
         </div>
 
