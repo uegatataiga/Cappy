@@ -1,7 +1,8 @@
 <h5>・コメントフォーム</h5>
+
 <div class="d-flex align-items-center justify-content-center">
-<%= form_with model: [item, comments], local: false do |f| %>
-<%= f.text_area :comment, rows: '5', cols: '80', placeholder: "コメントをここに" %>
-<%= f.submit "送信" %>
-<% end %>
+  <%= form_with model: [item, comments], local: false do |f| %>
+    <%= f.text_area :comment, rows: '5', cols: '80', placeholder: "コメントをここに" %>
+    %= f.submit "送信" %>
+  <% end %>
 </div>

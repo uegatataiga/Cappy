@@ -1,26 +1,26 @@
+<h5>・コメント</h5>
+<h6>・︎コメント件数:<span id="comment_counter"><%= item.comments.count %></span></h6>
 
- <h5>・コメント</h5>
- <h6>・︎コメント件数:<span id="comment_counter"><%= item.comments.count %></span></h6>
+<% item.comments.each do |comment| %>
+  <div class="row comment">
 
+    <div class="col-md-2">
+      <%= image_tag comment.user.get_profile_image, class: "rounded-circle",size:"50x50"  %></br>
+      <%= comment.user.name %>
+    </div>
 
+    <div class="col-md-8 d-flex align-items-center">
+      <%= comment.comment %>
+    </div>
 
-    <% item.comments.each do |comment| %>
-    <div class="row comment">
-     <div class="col-md-2">
-     <%= image_tag comment.user.get_profile_image, class: "rounded-circle",size:"50x50"  %></br>
-     <%= comment.user.name %>
-     </div>
-     <div class="col-md-8 d-flex align-items-center">
-     <%= comment.comment %>
-     </div>
-     <div class="col-md-2"><%= comment.created_at.strftime('%Y/%m/%d') %></br>
+    <div class="col-md-2"><%= comment.created_at.strftime('%Y/%m/%d') %></br>
+      <% if comment.user == current_user || current_user.admin? %>
+        <%= link_to "削除", item_comment_path(item, comment), method: :delete, remote: true, data: {"turbolinks" => false}, class: 'btn btn-outline-danger' %>
+      <% end %>
+    </div>
 
-     <% if comment.user == current_user || current_user.admin? %>
-     <%= link_to "削除", item_comment_path(item, comment), method: :delete, remote: true, data: {"turbolinks" => false}, class: 'btn btn-outline-danger' %>
-     <% end %>
-     </div>
-     </div>
-     <% end %>
+  </div>
+<% end %>
 
 
 

@@ -1,86 +1,99 @@
 <% if user_signed_in? %>
-<div class="container">
-  <h1 class="col-md-10 text-center mt-3">Cappy</h1>
-<div class='row'>
-  <div class="col-md-10 introductionss mt-3">
-    <h6>
-      猫ちゃんのおもちゃのレビューサイトです！</br>
-      おもちゃを買う時に実際に遊んでいる姿を見て購入したいと思い作成しました。</br>
-      また、皆さんの可愛い猫ちゃんがおもちゃで遊んでいる姿を共有して頂けたり、</br>
-      おもちゃを購入する時に参考になれば幸いです。
-　　</h6>
-　</div>
-     <div class="col-md-10 imagetop mt-3" style="margin-right:auto;">
+
+  <div class="container">
+    <h1 class="col-md-10 text-center mt-3">Cappy</h1>
+    <div class='row'>
+
+      <div class="col-md-10 introductionss mt-3">
+        <h6>
+        猫ちゃんのおもちゃのレビューサイトです！</br>
+        おもちゃを買う時に実際に遊んでいる姿を見て購入したいと思い作成しました。</br>
+        また、皆さんの可愛い猫ちゃんがおもちゃで遊んでいる姿を共有して頂けたり、</br>
+        おもちゃを購入する時に参考になれば幸いです。
+　　    </h6>
+　    </div>
+
+      <div class="col-md-10 imagetop mt-3" style="margin-right:auto;">
         <div class="slider" style="width:800px;">
-            <%= image_tag 'IMG_0995.JPG', style: "height: 300px;" %>
-            <%= image_tag 'IMG_1119.JPG', style: "height: 300px;" %>
-            <%= image_tag 'IMG_1221.JPG', style: "height: 300px;" %>
-            <%= image_tag 'IMG_1529.JPG', style: "height: 300px;" %>
-            <%= image_tag 'IMG_1279.JPG', style: "height: 300px;"%>
+          <%= image_tag 'IMG_0995.JPG', style: "height: 300px;" %>
+          <%= image_tag 'IMG_1119.JPG', style: "height: 300px;" %>
+          <%= image_tag 'IMG_1221.JPG', style: "height: 300px;" %>
+          <%= image_tag 'IMG_1529.JPG', style: "height: 300px;" %>
+          <%= image_tag 'IMG_1279.JPG', style: "height: 300px;"%>
         </div>
-     </div>
-    <div class="col-md-10 mt-3">
-      <h3>・新着情報</h3>
-   <div class="row homeinfo">
+      </div>
+
+      <div class="col-md-10 mt-3">
+        <h3>・新着情報</h3>
+
+        <div class="row homeinfo">
         <% @newitem.each do |item| %>
           <div class="row media-card shadow">
 
-  <div class="col-md-5">
-   <% if item.rakuten_image.blank? %>
-     <%= link_to item_path(item) do %>
-     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
-     <% end %>
-   <% else %>
-     <%= link_to item_path(item) do %>
-     <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
-     <% end %>
-   <% end %>
-   <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
- </div>
+            <div class="col-md-5">
+              <% if item.rakuten_image.blank? %>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
+                <% end %>
+              <% else %>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
+                <% end %>
+              <% end %>
+              <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
+            </div>
 
- <div class="col-md-7">
-    <div class="line">商品名：<%= item.name%></div>
-    <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
-    <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
-    <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
-</div>
-
-</div>
+            <div class="col-md-7">
+              <div class="line">商品名：<%= item.name%></div>
+              <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+              <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+            </div>
+          </div>
         <% end %>
 
           <div class="col-md-12 text-right">
             <%= link_to 'すべての商品を見る > ', items_path, class: "text-dark" %>
           </div>
+        </div>
       </div>
-      </div>
-      <% elsif %>
-      <div class="container">
-  <h1 class="col-md-12 text-center mt-5">Cappy</h1>
-<div class='row'>
-  <div class="col-md-10 mx-auto introductionss mt-5">
-    <h6>
-      猫ちゃんのおもちゃのレビューサイトです！</br>
-      おもちゃを買う時に実際に遊んでいる姿を見て購入したいと思い作成しました。</br>
-      また、皆さんの可愛い猫ちゃんがおもちゃで遊んでいる姿を共有して頂けたり、</br>
-      おもちゃを購入する時に参考になれば幸いです。
-　　</h6>
-　</div>
-     <div class="col-md-10 imagetop mt-3" style="margin-right:auto; margin-left:auto;">
-        <div class="slider" style="width:800px;">
+
+    </div>
+  </div>
+
+  <% elsif %>
+
+    <div class="container">
+      <h1 class="col-md-12 text-center mt-5">Cappy</h1>
+      <div class='row'>
+
+        <div class="col-md-10 mx-auto introductionss mt-5">
+          <h6>
+          猫ちゃんのおもちゃのレビューサイトです！</br>
+          おもちゃを買う時に実際に遊んでいる姿を見て購入したいと思い作成しました。</br>
+          また、皆さんの可愛い猫ちゃんがおもちゃで遊んでいる姿を共有して頂けたり、</br>
+          おもちゃを購入する時に参考になれば幸いです。
+　　      </h6>
+　      </div>
+
+        <div class="col-md-10 imagetop mt-3" style="margin-right:auto; margin-left:auto;">
+          <div class="slider" style="width:800px;">
             <%= image_tag 'IMG_0995.JPG', style: "height: 300px;" %>
             <%= image_tag 'IMG_1119.JPG', style: "height: 300px;" %>
             <%= image_tag 'IMG_1221.JPG', style: "height: 300px;" %>
             <%= image_tag 'IMG_1529.JPG', style: "height: 300px;" %>
             <%= image_tag 'IMG_1279.JPG', style: "height: 300px;"%>
+          </div>
         </div>
-     </div>
-      <div class="col-md-10 edit mx-auto mt-5">
-      <div><%= link_to "ゲストログイン", guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %></div>
-      <div><%= link_to "サインイン", new_user_registration_path,class: "btn btn-success btn-sm btn-block mb-3" %></div>
-      <div><%= link_to "ログイン", new_user_session_path ,class: "btn btn-info btn-sm btn-block mb-3" %></div>
+
+        <div class="col-md-10 edit mx-auto mt-5">
+          <div><%= link_to "ゲストログイン", guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %></div>
+          <div><%= link_to "サインイン", new_user_registration_path,class: "btn btn-success btn-sm btn-block mb-3" %></div>
+          <div><%= link_to "ログイン", new_user_session_path ,class: "btn btn-info btn-sm btn-block mb-3" %></div>
+        </div>
       </div>
-      <% end %>
     </div>
-    </div>
+
+  <% end %>
 
 

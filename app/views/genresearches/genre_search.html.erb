@@ -1,35 +1,37 @@
 <div class="container p-3">
+
   <h3>検索結果"<%= @item.count %>"件</h3>
+
   <div class="row">
+    <% @item.each do |item| %>
+      <div class="row media-card shadow">
 
-        <% @item.each do |item| %>
+        <div class="col-md-5 text-center">
+          <% if item.rakuten_image.blank? %>
+            <%= link_to item_path(item) do %>
+              <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
+            <% end %>
+          <% else %>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
+            <% end %>
+          <% end %>
+          <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
+        </div>
 
-  <div class="row media-card shadow">
+        <div class="col-md-7">
+          <div class="line">商品名：<%= item.name%></div>
+          <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
+          <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
+          <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
+        </div>
 
-  <div class="col-md-5 text-center">
-   <% if item.rakuten_image.blank? %>
-     <%= link_to item_path(item) do %>
-     <%= image_tag 'no_image.jpg', class: "border border-secondary", size: '130x130' %></br>
-     <% end %>
-   <% else %>
-     <%= link_to item_path(item) do %>
-     <%= image_tag item.rakuten_image, class: "border border-secondary", size: '130x130' %></br>
-     <% end %>
-   <% end %>
-   <p>&emsp;<%= link_to "商品を見る→",item_path(item), class: "text-dark" %></p>
- </div>
-
- <div class="col-md-7">
-    <div class="line">商品名：<%= item.name%></div>
-    <div class="line">投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %></div>
-    <div class="line">投稿者：<%= link_to item.user.name, item.user, class: "text-dark"%></div>
-    <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
-</div>
-
-</div>
-      <% end %>
       </div>
-      <div class="col-md-10">
-      <%= paginate @item %>
-      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-10">
+    <%= paginate @item %>
+  </div>
+
 </div>
