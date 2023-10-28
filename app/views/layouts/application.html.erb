@@ -15,26 +15,29 @@
 
   <body>
     <%= render 'layouts/header' %>
-     <% flash.each do |message_type, message| %>
-     <div class="flash-message <%= message_type %>"><%= message %></div>
-     <% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+
       <div class="row">
-     <% if user_signed_in? %>
-       <div class="col-md-2 offset-1 mt-4">
-     <%= render 'layouts/sidebar' %>
-       </div>
-     <div class="col-md-8 mx-auto">
-    <%= yield %>
-    </div>
-    <% else %>
-    <div class="col-md-8 mx-auto">
-    <%= yield %>
-    </div>
-    <% end %>
-    </div>
+        <% if user_signed_in? %>
+          <div class="col-md-2 offset-1 mt-4">
+            <%= render 'layouts/sidebar' %>
+          </div>
+          <div class="col-md-8 mx-auto">
+            <%= yield %>
+          </div>
+        <% else %>
+          <div class="col-md-8 mx-auto">
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>
+
 <script>
 $(function() {
   $('.sliders').slick({

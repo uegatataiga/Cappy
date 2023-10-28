@@ -1,23 +1,24 @@
 <div class='container col-md-8 mt-2 float-left'>
-<h2 class="text-center text-secondary">商品を検索</h2>
-<div class="search-box">
+  <h2 class="text-center text-secondary">商品を検索</h2>
+  <div class="search-box">
     <%= form_with url: items_search_path, method: :get, local: true do |f| %>
-    <div class="form-group">
+      <div class="form-group">
         <%= f.text_field :keyword, value: params[:keyword], class: "form-control" %>
         <%= f.submit '製品名を検索', class: "form-control btn btn--orange" %>
-    </div>
+      </div>
     <% end %>
-<% if @item.present? %>
-  <% @item.first(10).each do |item| %>
-<div class="list-group mt-3">
- <%= link_to "#{item.url}" do %>
- <%= image_tag (item['smallImageUrls'][0]) %>
- <% end %>
- <%= link_to new_item_path(rakuten_image:item.medium_image_urls,rakuten_name:item.name,rakuten_url:item.url,rakuten_introduction:item.params["itemCaption"],rakuten_code:item.params["itemCode"]) do %>
- <%= item.name %>
- <% end %>
-</div>
-<% end %>
-<% end %>
-</div>
+
+    <% if @item.present? %>
+      <% @item.first(10).each do |item| %>
+        <div class="list-group mt-3">
+          <%= link_to "#{item.url}" do %>
+            <%= image_tag (item['smallImageUrls'][0]) %>
+          <% end %>
+          <%= link_to new_item_path(rakuten_image:item.medium_image_urls,rakuten_name:item.name,rakuten_url:item.url,rakuten_introduction:item.params["itemCaption"],rakuten_code:item.params["itemCode"]) do %>
+            <%= item.name %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
