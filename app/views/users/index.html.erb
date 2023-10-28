@@ -3,9 +3,8 @@
    <h3 class="fas fa-users text-secondary">ユーザー一覧</h3>
 
 
-
 <% @users.each do |user| %>
-    <div class= "row user-group shadow ">
+    <div class= "row user-group shadow">
      <div class="col-md-2 text-center">
      <%= image_tag user.get_profile_image, class: "rounded-circle",size:"50x50"  %></br>
      <%= user.name %>
@@ -37,6 +36,7 @@
     </div>
     </div>
      <% end %>
+
      <div class="mx-auto">
      <%= paginate @users %>
      </div>
