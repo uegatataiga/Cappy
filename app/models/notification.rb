@@ -9,9 +9,4 @@ class Notification < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  UEST_USER_EMAIL = "guest@example.com"
-
-  def guest_user?
-     email == GUEST_USER_EMAIL
-  end
 end
