@@ -3,8 +3,8 @@
   <% if notification.subject.follower.guest_user? %>
     ゲストユーザー
   <% else %>
-    <%= link_to  user_path(notification.subject.user) do %>
-      <%= image_tag notification.subject.user.get_profile_image,class: "rounded-circle", size: '50x50' %>
+    <%= link_to  user_path(notification.subject.follower) do %>
+      <%= image_tag notification.subject.follower.get_profile_image,class: "rounded-circle", size: '50x50' %>
     <% end %>
     <%= link_to notification.subject.follower.name, user_path(notification.subject.follower) %>
   <% end %>
