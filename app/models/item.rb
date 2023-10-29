@@ -22,7 +22,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, presence: true
- # いいね機能
+  #いいね機能
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -36,7 +36,7 @@ class Item < ApplicationRecord
   end
 
 
-  # 検索方法分岐
+  #検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
       @item = Item.where("name LIKE?","#{word}")
