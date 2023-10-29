@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     @following_users = @user.following_users
@@ -74,4 +75,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end
