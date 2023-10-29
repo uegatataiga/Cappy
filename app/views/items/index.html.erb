@@ -4,7 +4,6 @@
     <nav class="nav nav-items col-md-10">
       <%= link_to '新しい順', items_path(latest: "true"), class: "nav-link list text-dark"%>
       <%= link_to '古い順', items_path(old: "true"), class: "nav-link list text-dark" %>
-      <%= link_to 'いいねの多い順', items_path(favorites_count: "true"), class: "nav-link list text-dark" %>
       <%= link_to '評価の高い順', items_path(star_count: "true"), class: "nav-link list text-dark" %>
     </nav>
 
