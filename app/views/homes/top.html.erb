@@ -29,8 +29,8 @@
 
         <div class="row homeinfo">
         <% @newitem.each do |item| %>
-          <div class="row media-card shadow" style="width: 370px">
 
+          <div class="row media-card shadow" style="width: 370px">
             <div class="col-md-5">
               <% if item.rakuten_image.blank? %>
                 <%= link_to item_path(item) do %>
@@ -51,6 +51,7 @@
               <div class="line" id="favorite<%= item.id %>"><%= render 'favorites/favorite', item: item %></div>
             </div>
           </div>
+
         <% end %>
 
           <div class="col-md-12 text-right">
